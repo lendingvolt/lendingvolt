@@ -65,27 +65,33 @@ type ClosingContent = { title: string; body: string; cta: string; secondary: str
 export function ClosingCta({
   content = closingCta,
   purpose,
+  scene,
 }: {
   content?: ClosingContent;
   purpose?: LoanPurpose;
+  /** A scene beside the form on desktop, beneath it on mobile. */
+  scene?: ReactNode;
 }) {
   return (
     <Section ground="ink-900" spacing="roomy" aria-labelledby="closing-title">
-      <Container>
-        <h2 id="closing-title" className="max-w-[16ch] text-display-lg">
-          {content.title}
-        </h2>
-        <p className="mt-3 max-w-[48ch] text-body-lg text-fg-muted md:mt-4">{content.body}</p>
-        <AmountForm
-          cta={content.cta}
-          defaultPurpose={purpose}
-          className="mt-6 md:mt-8"
-          secondary={
-            <Button href={contact.whatsapp} variant="text" target="_blank" rel="noopener noreferrer">
-              {content.secondary}
-            </Button>
-          }
-        />
+      <Container className={scene ? "grid items-center gap-10 lg:grid-cols-12 lg:gap-6" : undefined}>
+        <div className={scene ? "lg:col-span-7" : undefined}>
+          <h2 id="closing-title" className="max-w-[16ch] text-display-lg">
+            {content.title}
+          </h2>
+          <p className="mt-3 max-w-[48ch] text-body-lg text-fg-muted md:mt-4">{content.body}</p>
+          <AmountForm
+            cta={content.cta}
+            defaultPurpose={purpose}
+            className="mt-6 md:mt-8"
+            secondary={
+              <Button href={contact.whatsapp} variant="text" target="_blank" rel="noopener noreferrer">
+                {content.secondary}
+              </Button>
+            }
+          />
+        </div>
+        {scene && <div className="lg:col-span-5">{scene}</div>}
       </Container>
     </Section>
   );

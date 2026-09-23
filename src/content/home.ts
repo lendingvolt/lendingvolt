@@ -51,23 +51,19 @@ export const valueGrid = {
     {
       title: "One application, every lender",
       body: "Fill in one form. We send it to every lender in our network and bring the offers back to you.",
-      scene: "converge",
     },
     {
       title: "Your credit score stays intact",
       body: "We use soft searches to match you. Nothing appears on your credit file until you choose a lender.",
-      scene: "soft-check",
       footnote: "soft-search",
     },
     {
       title: "The real cost, shown plainly",
       body: "Every offer displays the monthly repayment, total payable and effective interest rate side by side.",
-      scene: "true-cost",
     },
     {
       title: "No charge. Either kind.",
       body: "You pay nothing. Lenders pay us a fee when a loan completes, and it never changes the rates you see.",
-      scene: "no-charge",
       footnote: "revenue",
     },
   ],
@@ -111,25 +107,21 @@ export const useCases = {
       title: "Debt consolidation",
       body: "Move card balances into one fixed monthly repayment.",
       href: routes.debtConsolidation,
-      scene: "consolidate",
     },
     {
       title: "Home renovation",
       body: "Fund the works on your flat without drawing down savings.",
       href: routes.renovation,
-      scene: "renovate",
     },
     {
       title: "Business cash flow",
       body: "Bridge the gap between invoices and payroll.",
       href: routes.business,
-      scene: "cashflow",
     },
     {
       title: "Life events",
       body: "Weddings, school fees and other planned costs, spread over time.",
       href: routes.personal,
-      scene: "life-event",
     },
   ],
 } as const;

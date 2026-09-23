@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "../components/figures/figures.css";
+@import "../components/scenes/scenes.css";
 
 /* ------------------------------------------------------------------ */
 /* Design tokens (CLAUDE.md)                                           */
@@ -449,6 +451,9 @@ html.has-page-theme[data-page-theme="light"] .hero-graphic {
 @media (prefers-reduced-motion: no-preference) {
   .marquee-track {
     animation: marquee 40s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
   }
 }
 

@@ -7,6 +7,7 @@ import { LenderWall } from "@/components/home/lender-wall";
 import { Testimonials } from "@/components/home/testimonials";
 import { UseCases } from "@/components/home/use-cases";
 import { ValueGrid } from "@/components/home/value-grid";
+import { ClosingScene } from "@/components/scenes/closing-scene";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
       <Testimonials />
       <Stats />
       <Faq />
-      <ClosingCta />
+      <ClosingCta scene={<ClosingScene className="aspect-[2/1] w-full" />} />
     </>
   );
 }

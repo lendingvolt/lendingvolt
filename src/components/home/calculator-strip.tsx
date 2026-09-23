@@ -12,6 +12,7 @@ import { Slider } from "@/components/ui/form-controls";
 import { Container, Section } from "@/components/ui/layout";
 import { cn } from "@/lib/cn";
 import { formatPercent, formatSGD, formatTenure, quoteFlatRate } from "@/lib/loan-math";
+import { RepaymentBars } from "./repayment-bars";
 
 /** Slim inline calculator: three sliders and a live repayment readout. */
 export function CalculatorStrip({
@@ -99,6 +100,7 @@ export function CalculatorStrip({
                   EIR {formatPercent(quote.eir)} p.a. · Total interest {formatSGD(quote.totalInterest)}
                 </div>
               </dl>
+              <RepaymentBars quote={quote} />
               <Button
                 variant="text"
                 className="self-start"

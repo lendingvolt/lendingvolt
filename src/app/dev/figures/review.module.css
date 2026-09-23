@@ -1,0 +1,18 @@
+/* Review page only: a figure crossing a 480-unit lane at 1.25px per unit.
+   528 units × 1.25px ÷ 70px/s ≈ 9.4s. Loops here for inspection; scenes never loop. */
+
+@keyframes cross {
+  from { transform: translateX(-24px); }
+  to { transform: translateX(504px); }
+}
+
+.lane {
+  animation: cross 9.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lane {
+    animation: none;
+    transform: translateX(240px);
+  }
+}

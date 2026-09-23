@@ -1,0 +1,220 @@
+/*
+ * Figure kit. Global, short class names (fk-*) keep the inline SVG light;
+ * imported once from globals.css so it ships in the main stylesheet. Every colour comes from a design token; each shape's shaded
+ * side is the same colour 12% darker. Pivots are in figure units and rely
+ * on the stage's viewBox starting at 0 0.
+ */
+
+.fk-stage {
+  display: block;
+  overflow: visible;
+  font-variant-numeric: tabular-nums;
+}
+
+.fk-stage[data-tone="light"] {
+  --fig-borrower: var(--accent-on-light);
+  --fig-borrower-legs: var(--ink-600);
+  --fig-lender: var(--ink-800);
+  --fig-lender-legs: var(--surface-2);
+  --fig-tie: var(--ink-400);
+  --fig-staff: var(--ink-600);
+  --fig-staff-legs: var(--ink-800);
+  --fig-apron: var(--surface-2);
+  --fig-hat: var(--warning);
+  --fig-eye: var(--ink-900);
+  --fig-highlight: var(--accent-on-light);
+  --fig-highlight-text: var(--accent-on-light);
+  --fig-on-highlight: var(--surface-0);
+  --fig-tint: var(--accent-soft);
+  --fig-tint-text: var(--accent-on-light);
+  --fig-furniture: var(--surface-2);
+  --fig-furniture-line: transparent;
+  --fig-paper: var(--surface-0);
+  --fig-paper-line: var(--border-strong);
+  --fig-rule: var(--border-strong);
+  --fig-ink: var(--ink-800);
+  --fig-ink-muted: var(--ink-600);
+  --fig-ground: var(--border-strong);
+}
+
+.fk-stage[data-tone="dark"] {
+  --fig-borrower: var(--accent);
+  --fig-borrower-legs: var(--on-dark-500);
+  --fig-lender: var(--dark-control);
+  --fig-lender-legs: var(--surface-2);
+  --fig-tie: var(--ink-400);
+  --fig-staff: var(--on-dark-500);
+  --fig-staff-legs: var(--dark-control);
+  --fig-apron: var(--surface-2);
+  --fig-hat: var(--warning-on-dark);
+  --fig-eye: var(--ink-900);
+  --fig-highlight: var(--accent);
+  --fig-highlight-text: var(--accent-text-on-dark);
+  --fig-on-highlight: var(--on-dark-900);
+  --fig-tint: var(--accent-soft-dark);
+  --fig-tint-text: var(--accent-text-on-dark);
+  --fig-furniture: var(--dark-surface-1);
+  --fig-furniture-line: var(--border-dark);
+  --fig-paper: var(--dark-surface-1);
+  --fig-paper-line: var(--border-dark-strong);
+  --fig-rule: var(--border-dark-strong);
+  --fig-ink: var(--on-dark-900);
+  --fig-ink-muted: var(--on-dark-500);
+  --fig-ground: var(--border-dark);
+}
+
+/* ---- Role outfits ------------------------------------------------ */
+
+.fk-figure {
+  --top: var(--fig-staff);
+  --legs: var(--fig-staff-legs);
+  --item: var(--fig-apron);
+}
+
+.fk-figure[data-role="borrower"] {
+  --top: var(--fig-borrower);
+  --legs: var(--fig-borrower-legs);
+}
+
+.fk-figure[data-role="lender"] {
+  --top: var(--fig-lender);
+  --legs: var(--fig-lender-legs);
+  --item: var(--fig-tie);
+}
+
+.fk-figure[data-role="worker"] {
+  --item: var(--fig-hat);
+}
+
+/* ---- Paints: a base and its shaded side --------------------------- */
+
+.fk-top { fill: var(--top); }
+.fk-topSide { fill: color-mix(in srgb, var(--top) 88%, #000); }
+.fk-legs { fill: var(--legs); }
+.fk-legsSide { fill: color-mix(in srgb, var(--legs) 88%, #000); }
+.fk-skin { fill: var(--skin); }
+.fk-skinSide { fill: color-mix(in srgb, var(--skin) 88%, #000); }
+.fk-hair { fill: var(--hair); }
+.fk-hairSide { fill: color-mix(in srgb, var(--hair) 88%, #000); }
+.fk-item { fill: var(--item); }
+.fk-itemSide { fill: color-mix(in srgb, var(--item) 88%, #000); }
+.fk-furniture { fill: var(--fig-furniture); }
+.fk-furnitureSide { fill: color-mix(in srgb, var(--fig-furniture) 88%, #000); }
+.fk-highlight { fill: var(--fig-highlight); }
+.fk-highlightSide { fill: color-mix(in srgb, var(--fig-highlight) 88%, #000); }
+.fk-ink { fill: var(--fig-ink); }
+.fk-inkSide { fill: color-mix(in srgb, var(--fig-ink) 88%, #000); }
+.fk-eye { fill: var(--fig-eye); }
+
+.fk-outline,
+.fk-paper,
+.fk-rule,
+.fk-ground,
+.fk-wire {
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.fk-outline { fill: none; stroke: var(--fig-furniture-line); }
+.fk-ground { fill: none; stroke: var(--fig-ground); }
+.fk-paper { fill: var(--fig-paper); stroke: var(--fig-paper-line); }
+.fk-paperHighlight { fill: var(--fig-highlight); }
+.fk-flag { fill: none; stroke: var(--fig-highlight); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+.fk-rule { fill: none; stroke: var(--fig-rule); }
+.fk-ruleOnHighlight { fill: none; stroke: var(--fig-on-highlight); stroke-opacity: 0.6; }
+.fk-muted { fill: var(--fig-ink-muted); }
+.fk-tint { fill: var(--fig-tint); }
+
+.fk-drawer {
+  fill: var(--fig-furniture);
+  stroke: var(--fig-rule);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+/* ---- Type on props ------------------------------------------------ */
+
+.fk-text {
+  fill: var(--fig-ink);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.fk-textMuted { fill: var(--fig-ink-muted); font-weight: 400; }
+.fk-textOnHighlight { fill: var(--fig-on-highlight); }
+.fk-textOnInk { fill: var(--fig-paper); }
+.fk-textHighlight { fill: var(--fig-highlight-text); }
+.fk-textTint { fill: var(--fig-tint-text); letter-spacing: 0.08em; }
+
+/* ---- Pivots ------------------------------------------------------- */
+
+.fk-legL { transform-origin: 8px 34px; }
+.fk-legR { transform-origin: 16px 34px; }
+.fk-armL { transform-origin: 2px 20px; }
+.fk-armR { transform-origin: 22px 20px; }
+.fk-head { transform-origin: 12px 18px; }
+.fk-grip,
+.fk-slide { transform-origin: 0 0; }
+
+/* Gestures and prop hand-offs. */
+.fk-armL,
+.fk-armR,
+.fk-head,
+.fk-grip,
+.fk-slide {
+  transition: transform 400ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* ---- Walk cycle: 480ms, linear, legs ±20°, arms ±15°, 2-unit bob --- */
+
+@keyframes fk-leg {
+  0%, 100% { transform: rotate(20deg); }
+  50% { transform: rotate(-20deg); }
+}
+
+@keyframes fk-arm {
+  0%, 100% { transform: rotate(-15deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes fk-bob {
+  0%, 50%, 100% { transform: translateY(1px); }
+  25%, 75% { transform: translateY(-1px); }
+}
+
+.fk-walking .fk-bob,
+.fk-walking .fk-legL,
+.fk-walking .fk-armFree.fk-armL {
+  animation: fk-leg 480ms linear infinite;
+  animation-delay: var(--walk-delay, 0ms);
+}
+
+.fk-walking .fk-bob { animation-name: fk-bob; }
+.fk-walking .fk-armFree.fk-armL { animation-name: fk-arm; }
+
+.fk-walking .fk-legR,
+.fk-walking .fk-armFree.fk-armR {
+  animation: fk-leg 480ms linear infinite;
+  animation-delay: calc(var(--walk-delay, 0ms) - 240ms);
+}
+
+.fk-walking .fk-armFree.fk-armR { animation-name: fk-arm; }
+
+/* ---- Current: a short bright segment travelling along a wire ------ */
+
+.fk-wire { stroke: var(--fig-rule); }
+.fk-pulse { fill: var(--fig-highlight); opacity: 0; }
+
+@keyframes fk-current {
+  0% { transform: translateX(0); opacity: 0; }
+  6%, 94% { opacity: 1; }
+  100% { transform: translateX(var(--travel)); opacity: 0; }
+}
+
+.fk-pulseRun { animation: fk-current 600ms linear both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fk-stage * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

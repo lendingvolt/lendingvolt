@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { flushSync } from "react-dom";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { showcase } from "@/content/home";
 import { loanLimits } from "@/content/offers";
 import { routes } from "@/content/site";
@@ -12,17 +11,41 @@ import { OfferCard } from "@/components/ui/offer-card";
 import { formatSGD, formatTenure } from "@/lib/loan-math";
 import { quoteOffers, sortOptions, type SortKey } from "./offer-quotes";
 
-/** Re-sort inside a view transition so cards glide to their new places. */
-function withTransition(update: () => void) {
-  const canAnimate =
-    typeof document !== "undefined" &&
-    "startViewTransition" in document &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!canAnimate) {
-    update();
-    return;
-  }
-  document.startViewTransition(() => flushSync(update));
+const REORDER_MS = 300;
+const REORDER_EASING = "cubic-bezier(0.2, 0, 0, 1)";
+
+/**
+ * FLIP on re-sort: remember where each card was, let React reorder them,
+ * then play each card from its old place to its new one.
+ */
+function useReorder(dependency: unknown) {
+  const listRef = useRef<HTMLUListElement>(null);
+  const before = useRef(new Map<string, DOMRect>());
+
+  const remember = () => {
+    const items = listRef.current?.querySelectorAll<HTMLElement>("[data-offer]") ?? [];
+    before.current = new Map(Array.from(items, (item) => [item.dataset.offer ?? "", item.getBoundingClientRect()]));
+  };
+
+  useLayoutEffect(() => {
+    const first = before.current;
+    before.current = new Map();
+    if (first.size === 0 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    listRef.current?.querySelectorAll<HTMLElement>("[data-offer]").forEach((item) => {
+      const from = first.get(item.dataset.offer ?? "");
+      if (!from) return;
+      const to = item.getBoundingClientRect();
+      const dx = from.left - to.left;
+      const dy = from.top - to.top;
+      if (dx === 0 && dy === 0) return;
+      item.animate([{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "translate(0px, 0px)" }], {
+        duration: REORDER_MS,
+        easing: REORDER_EASING,
+      });
+    });
+  }, [dependency]);
+
+  return { listRef, remember };
 }
 
 /**
@@ -35,6 +58,7 @@ export function ComparisonShowcase() {
   const [sort, setSort] = useState<SortKey>("monthly");
 
   const offers = useMemo(() => quoteOffers(amount, months, sort), [amount, months, sort]);
+  const { listRef, remember } = useReorder(sort);
 
   return (
     <Section ground="surface-0" aria-labelledby="showcase-title">
@@ -81,12 +105,15 @@ export function ComparisonShowcase() {
             hideLegend
             options={sortOptions}
             value={sort}
-            onChange={(value) => withTransition(() => setSort(value as SortKey))}
+            onChange={(value) => {
+              remember();
+              setSort(value as SortKey);
+            }}
             className="max-w-[560px]"
           />
-          <ul aria-label="Illustrative offers" className="grid gap-4 sm:grid-cols-2 lg:gap-6">
+          <ul ref={listRef} aria-label="Illustrative offers" className="grid gap-4 sm:grid-cols-2 lg:gap-6">
             {offers.map(({ lender, quote, fundingLabel, isBest }) => (
-              <li key={lender.id} style={{ viewTransitionName: `offer-${lender.id}` }}>
+              <li key={lender.id} data-offer={lender.id}>
                 <OfferCard
                   lenderName={lender.name}
                   product={lender.product}

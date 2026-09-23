@@ -1,5 +1,6 @@
 import type { FootnoteId } from "@/content/footnotes";
 import { cn } from "@/lib/cn";
+import { CountUp } from "./count-up";
 import { FootnoteRef } from "./footnotes";
 
 type Stat = { figure: string; label: string; footnote: FootnoteId };
@@ -15,7 +16,7 @@ export function StatsBand({ stats, className }: { stats: readonly Stat[]; classN
         >
           <dt className="order-2 text-body-sm text-fg-muted">{stat.label}</dt>
           <dd className="order-1 text-stat text-fg">
-            {stat.figure}
+            <CountUp figure={stat.figure} />
             <FootnoteRef id={stat.footnote} size="fixed" />
           </dd>
         </div>

@@ -1,0 +1,17 @@
+/* Hidden only until the client has set the opening pose, and only when a
+   script can do so; without JavaScript the final pose shows. */
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  .scene-frame[data-scene-pending] {
+    opacity: 0;
+  }
+}
+
+/* Dark-band scenes are drawn in the dark palette, so they fade with the band
+   when the page colour turns light. */
+.scene-frame[data-band="dark"] {
+  transition: opacity var(--theme-fade) linear;
+}
+
+html.has-page-theme:not([data-page-theme="dark"]) .scene-frame[data-band="dark"] {
+  opacity: 0;
+}
