@@ -439,24 +439,6 @@ html.has-page-theme[data-page-theme="light"] .hero-graphic {
   }
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .marquee-track {
-    animation: marquee 40s linear infinite;
-  }
-  .marquee-track:hover {
-    animation-play-state: paused;
-  }
-}
-
 /* Application flow: each screen fades and rises in; matching steps through. */
 @keyframes flow-rise {
   from {

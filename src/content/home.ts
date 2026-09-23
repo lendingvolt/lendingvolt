@@ -18,32 +18,37 @@ export const hero = {
   title: "Supercharge your loan search.",
   subheadBefore: "One application. Offers from ",
   lenderCount: "[N]",
-  subheadMiddle: " licensed lenders in Singapore. A soft check that ",
-  subheadFootnoted: "leaves your credit file untouched",
-  subheadAfter: ".",
+  subheadAfter: " licensed lenders in Singapore.",
   cta: "See my offers",
-  secondary: { label: "How it works", href: "#how-it-works" },
-  trust: [
-    "Singpass-secured",
-    "MAS & MinLaw regulated lenders",
-    "Free for borrowers",
-    "Singapore Fintech Association member",
-  ],
+  /** Rendered as the Singpass wordmark followed by `label`. */
+  singpass: {
+    onDark: "/images/singpass_logo_white-1.png",
+    onLight: "/images/singpass_logo_fullcolours.png",
+    alt: "Singpass",
+    label: "secured",
+  },
+  trust: ["MAS & MinLaw regulated lenders"],
 };
 
-export const lenderWall = {
-  line: "Plugged into Singapore's licensed lenders.",
-  lenders: [
-    "Lender A",
-    "Lender B",
-    "Lender C",
-    "Lender D",
-    "Lender E",
-    "Lender F",
-    "Lender G",
-    "Lender H",
+export const lenderVetting = {
+  title: "Every lender is vetted by hand, one by one.",
+  footnote: "lender-vetting",
+  lead: "We review each bank and licensed moneylender individually before they join our panel.",
+  criteria: [
+    {
+      title: "Licensed, then reviewed",
+      body: "Banks are regulated by MAS and moneylenders are licensed by the Ministry of Law. That is where our review starts, not where it ends.",
+    },
+    {
+      title: "Customer service",
+      body: "How a lender treats borrowers before and after the loan: how quickly they respond, how they handle complaints, and how clearly they explain the terms.",
+    },
+    {
+      title: "Product knowledge",
+      body: "Their staff should be able to explain the rate, every fee and the total cost of a loan in plain terms, without pressure.",
+    },
   ],
-};
+} as const;
 
 export const valueGrid = {
   statement: "Borrowing well is a decision, not an emergency.",

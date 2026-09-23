@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 import { cn } from "@/lib/cn";
 
 /** The three-shard mark. Takes its colour from `currentColor`. */
@@ -18,12 +22,22 @@ export function LogoMark({ className }: { className?: string }) {
   );
 }
 
-/** Mark and live wordmark, linking home. */
+/** Mark and live wordmark, linking home. On the homepage it scrolls to the top. */
 export function Logo({ className }: { className?: string }) {
+  const pathname = usePathname();
+
+  const onClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/") return;
+    event.preventDefault();
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+  };
+
   return (
     <Link
       href="/"
       aria-label="Lendingvolt home"
+      onClick={onClick}
       className={cn("inline-flex min-h-11 items-center gap-2.5 text-fg", className)}
     >
       <LogoMark className="h-[22px] w-auto shrink-0" />

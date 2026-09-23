@@ -10,6 +10,10 @@ export const footnotes = [
     text: "[N] is the number of licensed lenders on the Lendingvolt panel as at [date]. The panel changes over time.",
   },
   {
+    id: "lender-vetting",
+    text: "Lendingvolt reviews each lender individually before adding it to the panel, covering its licence, customer service and product knowledge. Passing the review is not an endorsement of any lender and does not guarantee approval, a particular rate or a level of service. Review criteria and how often lenders are re-reviewed to confirm before launch.",
+  },
+  {
     id: "soft-search",
     text: "A soft search does not affect your credit score. A lender may run a full credit bureau search once you proceed with them, and they will tell you before they do.",
   },

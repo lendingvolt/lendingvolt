@@ -60,14 +60,32 @@ function HeroStage({ variant }: { variant: HeroVariant }) {
   );
 }
 
-/** The offers line up. Six lenders from 768px, four below. */
-export function HeroScene({ className }: { className?: string }) {
+/**
+ * The offers line up. Six lenders from 768px, four below.
+ * `mobile` renders only the four-lender stage, for placing it on its own.
+ */
+export function HeroScene({
+  className,
+  variant = "responsive",
+}: {
+  className?: string;
+  variant?: "responsive" | "mobile";
+}) {
+  if (variant === "mobile") {
+    return (
+      <div className={className}>
+        <HeroStage variant="mobile" />
+      </div>
+    );
+  }
+
   return (
     <div className={className}>
       <div className="hidden md:block">
         <HeroStage variant="desktop" />
       </div>
-      <div className="md:hidden">
+      {/* Below 480px the hero puts this stage above the amount field. */}
+      <div className="hidden sm:block md:hidden">
         <HeroStage variant="mobile" />
       </div>
     </div>

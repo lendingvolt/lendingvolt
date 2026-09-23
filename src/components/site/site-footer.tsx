@@ -61,7 +61,9 @@ export function SiteFooter() {
 
         <div className="mt-16 flex flex-col gap-8 border-t border-line pt-10 md:mt-20">
           <div className="flex max-w-[88ch] flex-col gap-3 text-caption text-fg-muted">
-            <p>{entityDisclosure.copyright}</p>
+            <p>
+              {entityDisclosure.copyright} {entityDisclosure.builtWith}
+            </p>
             <p>{entityDisclosure.statement}</p>
           </div>
 

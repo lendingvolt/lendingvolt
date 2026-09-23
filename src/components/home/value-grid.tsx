@@ -6,7 +6,7 @@ import { valueScenes } from "@/components/scenes/value-scenes";
 /** Statement line, then four cells: scene, title, one sentence. */
 export function ValueGrid() {
   return (
-    <Section ground="surface-0" aria-labelledby="value-title" className="pt-8 md:pt-12">
+    <Section ground="surface-0" aria-labelledby="value-title">
       <Container>
         <h2 id="value-title" className="mx-auto max-w-[22ch] text-center text-display-lg">
           {valueGrid.statement}

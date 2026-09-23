@@ -15,6 +15,8 @@ type AmountFormProps = {
   cta: string;
   /** Show the loan-purpose control (hero) or amount only (closing CTA). */
   withPurpose?: boolean;
+  /** Extra classes on the purpose control, for example to hide it on a phone. */
+  purposeClassName?: string;
   /** Purpose saved when the control is hidden, and the one selected first when shown. */
   defaultPurpose?: LoanPurpose;
   secondary?: ReactNode;
@@ -28,6 +30,7 @@ type AmountFormProps = {
 export function AmountForm({
   cta,
   withPurpose = false,
+  purposeClassName,
   defaultPurpose = "personal",
   secondary,
   className,
@@ -60,14 +63,15 @@ export function AmountForm({
           options={loanPurposes}
           value={purpose}
           onChange={(value) => setPurpose(value as LoanPurpose)}
-          className="max-w-[520px]"
+          className={cn("max-w-[520px]", purposeClassName)}
         />
       )}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start">
         <Input
           id={`${id}-amount`}
-          label="Loan amount"
-          hideLabel
+          label="Enter your loan amount"
+          strongLabel
+          required
           prefix="S$"
           inputMode="numeric"
           autoComplete="off"
@@ -81,10 +85,12 @@ export function AmountForm({
           }}
           className="sm:w-60"
         />
-        <Button type="submit" className="w-full sm:w-auto">
+        <Button type="submit" className="w-full sm:mt-8 sm:w-auto">
           {cta}
         </Button>
-        {secondary && <div className="flex min-h-12 items-center sm:min-h-13 sm:pl-2">{secondary}</div>}
+        {secondary && (
+          <div className="flex min-h-12 items-center sm:mt-8 sm:min-h-13 sm:pl-2">{secondary}</div>
+        )}
       </div>
     </form>
   );

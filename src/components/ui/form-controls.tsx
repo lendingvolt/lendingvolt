@@ -6,6 +6,8 @@ type InputProps = Omit<ComponentPropsWithoutRef<"input">, "className" | "prefix"
   label: string;
   /** Hide the label visually while keeping it for screen readers. */
   hideLabel?: boolean;
+  /** Semibold label, for a title sitting above a primary field. */
+  strongLabel?: boolean;
   prefix?: string;
   hint?: string;
   error?: string;
@@ -16,11 +18,14 @@ type InputProps = Omit<ComponentPropsWithoutRef<"input">, "className" | "prefix"
  * 52px text input with a real label above it. Font size stays at 16px or
  * more so iOS Safari does not zoom on focus.
  */
-export function Input({ id, label, hideLabel, prefix, hint, error, className, ...props }: InputProps) {
+export function Input({ id, label, hideLabel, strongLabel, prefix, hint, error, className, ...props }: InputProps) {
   const describedBy = [hint && `${id}-hint`, error && `${id}-error`].filter(Boolean).join(" ") || undefined;
   return (
     <div className={cn("flex flex-col gap-2", className)}>
-      <label htmlFor={id} className={cn("text-body-sm font-medium text-fg", hideLabel && "sr-only")}>
+      <label
+        htmlFor={id}
+        className={cn("text-body-sm text-fg", strongLabel ? "font-semibold" : "font-medium", hideLabel && "sr-only")}
+      >
         {label}
       </label>
       <div

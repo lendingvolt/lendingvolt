@@ -155,6 +155,7 @@ export const legalLinks: FooterLink[] = [
 
 export const entityDisclosure = {
   copyright: "© 2026 Lendingvolt. All rights reserved.",
+  builtWith: "Built with ❤️ in 🇸🇬",
   statement:
     "Lendingvolt is run and managed by Lendkaki Pay Pte. Ltd. (UEN: 202607335C). Lendingvolt is a loan comparison platform. We are not a lender. All loan products are offered by licensed banks and financial institutions regulated by the Monetary Authority of Singapore (MAS) and/or licensed by the Ministry of Law (MinLaw). Rates shown are indicative and subject to change.",
 };
