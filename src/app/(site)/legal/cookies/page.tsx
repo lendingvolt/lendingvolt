@@ -1,7 +1,12 @@
-import { StubPage, stubMetadata } from "@/components/site/stub-page";
+import type { Metadata } from "next";
+import { LegalDocument } from "@/components/legal/legal-document";
+import { cookiesPage } from "@/content/legal";
 
-export const metadata = stubMetadata("cookies");
+export const metadata: Metadata = {
+  title: cookiesPage.title,
+  description: cookiesPage.description,
+};
 
-export default function Page() {
-  return <StubPage page="cookies" />;
+export default function CookiesPage() {
+  return <LegalDocument page={cookiesPage} />;
 }

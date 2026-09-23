@@ -1,7 +1,12 @@
-import { StubPage, stubMetadata } from "@/components/site/stub-page";
+import type { Metadata } from "next";
+import { LegalDocument } from "@/components/legal/legal-document";
+import { privacyPage } from "@/content/legal";
 
-export const metadata = stubMetadata("privacy");
+export const metadata: Metadata = {
+  title: privacyPage.title,
+  description: privacyPage.description,
+};
 
-export default function Page() {
-  return <StubPage page="privacy" />;
+export default function PrivacyPage() {
+  return <LegalDocument page={privacyPage} />;
 }

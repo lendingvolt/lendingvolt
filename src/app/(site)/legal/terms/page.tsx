@@ -1,7 +1,12 @@
-import { StubPage, stubMetadata } from "@/components/site/stub-page";
+import type { Metadata } from "next";
+import { LegalDocument } from "@/components/legal/legal-document";
+import { termsPage } from "@/content/legal";
 
-export const metadata = stubMetadata("terms");
+export const metadata: Metadata = {
+  title: termsPage.title,
+  description: termsPage.description,
+};
 
-export default function Page() {
-  return <StubPage page="terms" />;
+export default function TermsPage() {
+  return <LegalDocument page={termsPage} />;
 }

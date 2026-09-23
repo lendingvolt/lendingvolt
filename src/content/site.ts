@@ -165,10 +165,6 @@ export const stubPages = {
   compare: { title: "Compare offers", group: "Compare" },
   howItWorks: { title: "How it works", group: "Company" },
   contact: { title: "Contact", group: "Contact" },
-  terms: { title: "Terms of Use", group: "Legal" },
-  privacy: { title: "Privacy Policy", group: "Legal" },
-  pdpa: { title: "PDPA Notice", group: "Legal" },
-  cookies: { title: "Cookie Policy", group: "Legal" },
   login: { title: "Log in", group: "Account" },
   applications: { title: "My applications", group: "Account" },
 } as const satisfies Partial<Record<keyof typeof routes, { title: string; group: string }>>;
