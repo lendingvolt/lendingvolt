@@ -1,26 +1,516 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/* Design tokens (CLAUDE.md)                                           */
+/* ------------------------------------------------------------------ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dark surfaces */
+  --ink-900: #171721;
+  --dark-surface-1: #1e1e2a;
+  --dark-control: #323649;
+  --on-dark-900: #ededf4;
+  --on-dark-500: #9a9aab;
+  --border-dark: rgba(237, 237, 244, 0.09);
+  --border-dark-strong: rgba(237, 237, 244, 0.18);
+
+  /* Light surfaces */
+  --surface-0: #fbfcfd;
+  --surface-1: #f6f5f2;
+  --surface-2: #eeede9;
+  --ink-800: #272735;
+  --ink-600: #535461;
+  --ink-500: #6b6c78;
+  --ink-400: #8a8b96;
+  --ink-300: #b4b5be;
+  --border: rgba(39, 39, 53, 0.09);
+  --border-strong: rgba(39, 39, 53, 0.18);
+
+  /* Accent: one hue, two contexts */
+  --accent: #5266eb;
+  --accent-hover: #4054d6;
+  --accent-on-light: #3441a6;
+  --accent-on-light-hover: #2a3488;
+  --accent-soft: rgba(52, 65, 166, 0.07);
+  --accent-soft-dark: rgba(82, 102, 235, 0.16);
+  --accent-text-on-dark: #9aa6ff;
+
+  /* Semantic */
+  --positive: #1b8f62;
+  --positive-on-dark: #3fcb94;
+  --warning: #b5761a;
+  --warning-on-dark: #e0a84a;
+  --negative: #be4038;
+  --negative-on-dark: #f2766d;
+
+  /* Elevation */
+  --shadow-card: 0 1px 2px rgba(23, 23, 33, 0.05), 0 8px 24px rgba(23, 23, 33, 0.07);
+  --shadow-pop: 0 4px 12px rgba(23, 23, 33, 0.09), 0 16px 48px rgba(23, 23, 33, 0.12);
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+
+  --header-h: 72px;
+  --theme-fade: 600ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ------------------------------------------------------------------ */
+/* Semantic theme variables                                            */
+/* Components only ever read these, so a whole region can switch       */
+/* between light and dark by changing where they are declared.         */
+/* Registered as colours so the page-level switch can crossfade.       */
+/* ------------------------------------------------------------------ */
+
+@property --bg { syntax: "<color>"; inherits: true; initial-value: #fbfcfd; }
+@property --fg { syntax: "<color>"; inherits: true; initial-value: #272735; }
+@property --fg-body { syntax: "<color>"; inherits: true; initial-value: #535461; }
+@property --fg-muted { syntax: "<color>"; inherits: true; initial-value: #6b6c78; }
+@property --fg-faint { syntax: "<color>"; inherits: true; initial-value: #b4b5be; }
+@property --line { syntax: "<color>"; inherits: true; initial-value: rgba(39, 39, 53, 0.09); }
+@property --line-strong { syntax: "<color>"; inherits: true; initial-value: rgba(39, 39, 53, 0.18); }
+@property --cta { syntax: "<color>"; inherits: true; initial-value: #3441a6; }
+@property --cta-hover { syntax: "<color>"; inherits: true; initial-value: #2a3488; }
+@property --link { syntax: "<color>"; inherits: true; initial-value: #3441a6; }
+@property --tint { syntax: "<color>"; inherits: true; initial-value: rgba(52, 65, 166, 0.07); }
+@property --card { syntax: "<color>"; inherits: true; initial-value: #fbfcfd; }
+@property --field { syntax: "<color>"; inherits: true; initial-value: #fbfcfd; }
+@property --control { syntax: "<color>"; inherits: true; initial-value: #eeede9; }
+@property --positive-c { syntax: "<color>"; inherits: true; initial-value: #1b8f62; }
+
+:root,
+[data-theme-lock="light"],
+html:not(.has-page-theme) [data-theme="light"],
+html.has-page-theme[data-page-theme="light"] {
+  --fg: var(--ink-800);
+  --fg-body: var(--ink-600);
+  --fg-muted: var(--ink-500);
+  --fg-faint: var(--ink-300);
+  --line: var(--border);
+  --line-strong: var(--border-strong);
+  --cta: var(--accent-on-light);
+  --cta-hover: var(--accent-on-light-hover);
+  --link: var(--accent-on-light);
+  --tint: var(--accent-soft);
+  --card: var(--surface-0);
+  --field: var(--surface-0);
+  --control: var(--surface-2);
+  --positive-c: var(--positive);
+  --badge-fg: var(--ink-500);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+[data-theme-lock="dark"],
+html:not(.has-page-theme) [data-theme="dark"],
+html:not(.has-page-theme):has(#main > [data-theme="dark"]:first-child) .site-header:not([data-theme-lock]),
+html.has-page-theme[data-page-theme="dark"] {
+  --fg: var(--on-dark-900);
+  --fg-body: var(--on-dark-500);
+  --fg-muted: var(--on-dark-500);
+  --fg-faint: #5d5e70;
+  --line: var(--border-dark);
+  --line-strong: var(--border-dark-strong);
+  --cta: var(--accent);
+  --cta-hover: var(--accent-hover);
+  --link: var(--accent-text-on-dark);
+  --tint: var(--accent-soft-dark);
+  --card: var(--dark-surface-1);
+  --field: var(--dark-surface-1);
+  --control: var(--dark-control);
+  --positive-c: var(--positive-on-dark);
+  --badge-fg: var(--on-dark-900);
+}
+
+/* Grounds: the background each section paints on its own (no JS), or
+   hands to the page once the scroll colour controller has mounted. */
+:root,
+[data-ground="surface-0"],
+html.has-page-theme[data-page-ground="surface-0"] { --bg: var(--surface-0); }
+[data-ground="surface-1"],
+html.has-page-theme[data-page-ground="surface-1"] { --bg: var(--surface-1); }
+[data-ground="ink-900"],
+html.has-page-theme[data-page-ground="ink-900"] { --bg: var(--ink-900); }
+[data-theme-lock="light"] { --bg: var(--surface-0); }
+[data-theme-lock="dark"] { --bg: var(--ink-900); }
+
+html.has-page-theme [data-ground] { --bg: inherit; }
+html.has-page-theme [data-ground][data-theme-lock="dark"] { --bg: var(--ink-900); }
+html.has-page-theme [data-ground][data-theme-lock="light"] { --bg: var(--surface-0); }
+
+[data-ground] {
+  background-color: var(--bg);
+  color: var(--fg-body);
+}
+
+html.has-page-theme [data-ground]:not([data-theme-lock]) {
+  background-color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.has-page-theme.theme-ready {
+    transition:
+      --bg var(--theme-fade) linear,
+      --fg var(--theme-fade) linear,
+      --fg-body var(--theme-fade) linear,
+      --fg-muted var(--theme-fade) linear,
+      --fg-faint var(--theme-fade) linear,
+      --line var(--theme-fade) linear,
+      --line-strong var(--theme-fade) linear,
+      --cta var(--theme-fade) linear,
+      --cta-hover var(--theme-fade) linear,
+      --link var(--theme-fade) linear,
+      --tint var(--theme-fade) linear,
+      --card var(--theme-fade) linear,
+      --field var(--theme-fade) linear,
+      --control var(--theme-fade) linear,
+      --positive-c var(--theme-fade) linear;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------ */
+/* Tailwind theme                                                      */
+/* ------------------------------------------------------------------ */
+
+@theme inline {
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --breakpoint-sm: 30rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-fg-body: var(--fg-body);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-faint: var(--fg-faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-cta: var(--cta);
+  --color-cta-hover: var(--cta-hover);
+  --color-link: var(--link);
+  --color-tint: var(--tint);
+  --color-card: var(--card);
+  --color-field: var(--field);
+  --color-control: var(--control);
+  --color-positive: var(--positive-c);
+  --color-badge-fg: var(--badge-fg);
+
+  --color-ink-900: var(--ink-900);
+  --color-ink-800: var(--ink-800);
+  --color-ink-600: var(--ink-600);
+  --color-ink-500: var(--ink-500);
+  --color-ink-300: var(--ink-300);
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-on-dark-900: var(--on-dark-900);
+  --color-on-dark-500: var(--on-dark-500);
+  --color-negative: var(--negative);
+
+  --radius-sm: var(--r-sm);
+  --radius-md: var(--r-md);
+  --radius-lg: var(--r-lg);
+  --radius-xl: var(--r-xl);
+  --radius-pill: var(--r-pill);
+
+  --shadow-card: var(--shadow-card);
+  --shadow-pop: var(--shadow-pop);
+}
+
+/* ------------------------------------------------------------------ */
+/* Type scale: mobile below 768px, desktop at 1280px, linear between.  */
+/* ------------------------------------------------------------------ */
+
+@utility text-display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(40px, calc(40px + (100vw - 768px) * 36 / 512), 76px);
+  line-height: clamp(44px, calc(44px + (100vw - 768px) * 36 / 512), 80px);
+  letter-spacing: -0.02em;
+  font-weight: 480;
+  font-variation-settings: "wght" 480;
+  @variant lg { letter-spacing: -0.03em; }
+}
+
+@utility text-display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(32px, calc(32px + (100vw - 768px) * 24 / 512), 56px);
+  line-height: clamp(38px, calc(38px + (100vw - 768px) * 24 / 512), 62px);
+  letter-spacing: -0.015em;
+  font-weight: 480;
+  font-variation-settings: "wght" 480;
+  @variant lg { letter-spacing: -0.025em; }
+}
+
+@utility text-display-md {
+  font-family: var(--font-display);
+  font-size: clamp(28px, calc(28px + (100vw - 768px) * 17 / 512), 45px);
+  line-height: clamp(34px, calc(34px + (100vw - 768px) * 16 / 512), 50px);
+  letter-spacing: -0.01em;
+  font-weight: 480;
+  font-variation-settings: "wght" 480;
+  @variant lg { letter-spacing: -0.02em; }
+}
+
+@utility text-heading-lg {
+  font-size: clamp(22px, calc(22px + (100vw - 768px) * 6 / 512), 28px);
+  line-height: clamp(29px, calc(29px + (100vw - 768px) * 7 / 512), 36px);
+  letter-spacing: -0.005em;
+  font-weight: 500;
+  font-variation-settings: "wght" 500;
+  @variant lg { letter-spacing: -0.01em; }
+}
+
+@utility text-heading-sm {
+  font-size: clamp(18px, calc(18px + (100vw - 768px) * 2 / 512), 20px);
+  line-height: clamp(26px, calc(26px + (100vw - 768px) * 2 / 512), 28px);
+  letter-spacing: 0;
+  font-weight: 500;
+  font-variation-settings: "wght" 500;
+}
+
+@utility text-body-lg {
+  font-size: clamp(17px, calc(17px + (100vw - 768px) * 3 / 512), 20px);
+  line-height: clamp(27px, calc(27px + (100vw - 768px) * 5.5 / 512), 32.5px);
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-body-md {
+  font-size: clamp(16px, calc(16px + (100vw - 768px) * 1 / 512), 17px);
+  line-height: clamp(26px, calc(26px + (100vw - 768px) * 1.6 / 512), 27.6px);
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-body-sm {
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-label {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-variation-settings: "wght" 500;
+}
+
+@utility text-caption {
+  font-size: clamp(12px, calc(12px + (100vw - 768px) * 1 / 512), 13px);
+  line-height: clamp(19px, calc(19px + (100vw - 768px) * 1 / 512), 20px);
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility text-stat {
+  font-size: clamp(36px, calc(36px + (100vw - 768px) * 20 / 512), 56px);
+  line-height: clamp(40px, calc(40px + (100vw - 768px) * 20 / 512), 60px);
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  font-variation-settings: "wght" 500;
+  font-variant-numeric: tabular-nums;
+  @variant lg { letter-spacing: -0.03em; }
+}
+
+@utility text-numeric {
+  font-size: clamp(22px, calc(22px + (100vw - 768px) * 6 / 512), 28px);
+  line-height: clamp(28px, calc(28px + (100vw - 768px) * 6 / 512), 34px);
+  letter-spacing: -0.015em;
+  font-weight: 500;
+  font-variation-settings: "wght" 500;
+  font-variant-numeric: tabular-nums;
+  @variant lg { letter-spacing: -0.02em; }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility prose-width {
+  max-width: 60ch;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    background-color: var(--bg);
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-h) + 16px);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.625;
+    color: var(--fg-body);
+    background-color: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--fg);
+    font-family: var(--font-display);
+    font-weight: 480;
+    font-variation-settings: "wght" 480;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--cta);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--accent-soft-dark);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion                                                              */
+/* ------------------------------------------------------------------ */
+
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-rise linear both;
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+/* The hero render is drawn for the dark band; let it fade with the page. */
+.hero-graphic {
+  transition: opacity var(--theme-fade) linear;
+}
+html.has-page-theme[data-page-theme="light"] .hero-graphic {
+  opacity: 0;
+}
+@media (max-width: 47.99rem) {
+  .hero-graphic {
+    opacity: 0.55;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Range slider: 4px track, 24px thumb, 44px hit area                  */
+/* ------------------------------------------------------------------ */
+
+.range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.range-input::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(to right, var(--cta) var(--fill, 50%), var(--line-strong) var(--fill, 50%));
+}
+
+.range-input::-moz-range-track {
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: var(--line-strong);
+}
+
+.range-input::-moz-range-progress {
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: var(--cta);
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  margin-top: -10px;
+  border-radius: 50%;
+  background: var(--cta);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--cta);
+}
+
+.range-input::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--cta);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 1px var(--cta);
+}
+
+.range-input:focus-visible {
+  outline: none;
+}
+
+.range-input:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 1px var(--cta), 0 0 0 5px var(--tint);
+  outline: 2px solid var(--cta);
+  outline-offset: 2px;
+}
+
+.range-input:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--cta);
+  outline-offset: 2px;
+}
+
+/* Native <details> accordions: hide the default marker. */
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
 }
