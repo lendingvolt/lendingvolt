@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
 type Variant = "primary" | "secondary" | "text";
 
 const base =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-[background-color,border-color,color,transform] duration-150 ease-out select-none";
+  "inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap font-medium transition-[background-color,border-color,color,transform] duration-150 ease-out select-none disabled:cursor-not-allowed";
 
 const variants: Record<Variant, string> = {
   primary: "rounded-md bg-cta text-white hover:bg-cta-hover active:scale-[0.99]",

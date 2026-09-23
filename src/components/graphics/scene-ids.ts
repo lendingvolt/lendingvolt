@@ -11,6 +11,8 @@ export const sceneIds = [
   "consent-toggles",
   "rate-vs-market",
   "offer-stack",
+  "matching",
+  "circuit",
 ] as const;
 
 export type SceneId = (typeof sceneIds)[number];

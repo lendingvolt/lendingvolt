@@ -23,7 +23,6 @@ export const routes = {
   compare: "/compare",
   apply: "/apply",
   howItWorks: "/how-it-works",
-  lenders: "/lenders",
   about: "/about",
   loanCalculator: "/tools/loan-calculator",
   affordability: "/tools/affordability",
@@ -33,7 +32,6 @@ export const routes = {
   privacy: "/legal/privacy",
   pdpa: "/legal/pdpa",
   cookies: "/legal/cookies",
-  disclaimers: "/legal/disclaimers",
   login: "/account/login",
   applications: "/account/applications",
 } as const;
@@ -88,11 +86,6 @@ export const navGroups: NavGroup[] = [
         description: "One application, every matched offer.",
       },
       {
-        title: "Our lenders",
-        href: routes.lenders,
-        description: "The licensed lenders on our panel.",
-      },
-      {
         title: "About",
         href: routes.about,
         description: "Who runs Lendingvolt and how we are paid.",
@@ -107,11 +100,6 @@ export const navGroups: NavGroup[] = [
         href: routes.faq,
         description: "Credit checks, eligibility, fees and data.",
       },
-      {
-        title: "Disclaimers",
-        href: routes.disclaimers,
-        description: "How rates and examples are calculated.",
-      },
     ],
   },
 ];
@@ -122,8 +110,7 @@ export type FooterColumn = { heading: string; links: FooterLink[] };
 /** Contact details to confirm before launch. */
 export const contact = {
   email: "support@lendingvolt.sg",
-  phone: "+65 [XXXX XXXX]",
-  address: "[Registered address], Singapore [XXXXXX]",
+  address: "2 Venture Drive, #19-21, Vision Exchange, Singapore 608526",
   whatsapp: "https://wa.me/65XXXXXXXX",
 };
 
@@ -147,7 +134,6 @@ export const footerColumns: FooterColumn[] = [
     heading: "Resources",
     links: [
       { label: "FAQ", href: routes.faq },
-      { label: "Disclaimers", href: routes.disclaimers },
       { label: "Contact", href: routes.contact },
     ],
   },
@@ -155,13 +141,8 @@ export const footerColumns: FooterColumn[] = [
     heading: "Contact",
     links: [
       { label: contact.email, href: `mailto:${contact.email}` },
-      { label: contact.phone },
       { label: contact.address },
     ],
-  },
-  {
-    heading: "Follow",
-    links: [{ label: "LinkedIn" }, { label: "Instagram" }, { label: "Facebook" }],
   },
 ];
 
@@ -180,24 +161,13 @@ export const entityDisclosure = {
 
 /** Placeholder pages: one per Phase 1 route that is not yet built. */
 export const stubPages = {
-  personal: { title: "Personal loans", group: "Loans" },
-  debtConsolidation: { title: "Debt consolidation", group: "Loans" },
-  renovation: { title: "Renovation loans", group: "Loans" },
-  business: { title: "Business loans", group: "Loans" },
   compare: { title: "Compare offers", group: "Compare" },
-  apply: { title: "Apply", group: "Apply" },
   howItWorks: { title: "How it works", group: "Company" },
-  lenders: { title: "Our lenders", group: "Company" },
-  about: { title: "About", group: "Company" },
-  loanCalculator: { title: "Loan calculator", group: "Tools" },
-  affordability: { title: "Affordability check", group: "Tools" },
-  faq: { title: "Frequently asked questions", group: "Resources" },
   contact: { title: "Contact", group: "Contact" },
   terms: { title: "Terms of Use", group: "Legal" },
   privacy: { title: "Privacy Policy", group: "Legal" },
   pdpa: { title: "PDPA Notice", group: "Legal" },
   cookies: { title: "Cookie Policy", group: "Legal" },
-  disclaimers: { title: "Disclaimers", group: "Legal" },
   login: { title: "Log in", group: "Account" },
   applications: { title: "My applications", group: "Account" },
 } as const satisfies Partial<Record<keyof typeof routes, { title: string; group: string }>>;

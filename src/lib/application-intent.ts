@@ -1,9 +1,12 @@
 import { z } from "zod";
 import { loanPurposes } from "@/content/home";
 
+export const tenureOptions = ["12", "24", "36", "48", "60"] as const;
+export type Tenure = (typeof tenureOptions)[number];
+
 /**
- * The only data the homepage collects: amount and purpose. It is kept in
- * sessionStorage for the apply page and never placed in a URL.
+ * The only data kept outside the page: amount, purpose and, once the
+ * application is done, tenure. It lives in sessionStorage and never in a URL.
  */
 export const intentSchema = z.object({
   amount: z
@@ -12,6 +15,7 @@ export const intentSchema = z.object({
     .min(1_000, "The smallest loan on our panel is S$1,000.")
     .max(500_000, "For more than S$500,000, talk to us directly."),
   purpose: z.enum(loanPurposes.map((purpose) => purpose.value) as [string, ...string[]]),
+  tenure: z.enum(tenureOptions).optional(),
 });
 
 export type ApplicationIntent = z.infer<typeof intentSchema>;
@@ -29,5 +33,17 @@ export function saveIntent(intent: ApplicationIntent): void {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(intent));
   } catch {
     // Storage can be unavailable (private mode, quota); the apply page asks again.
+  }
+}
+
+/** The saved intent, or null when there is none or it no longer validates. */
+export function loadIntent(): ApplicationIntent | null {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    const result = intentSchema.safeParse(JSON.parse(raw));
+    return result.success ? result.data : null;
+  } catch {
+    return null;
   }
 }

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { entityDisclosure, footerColumns, legalLinks, type FooterLink } from "@/content/site";
 import { Disclaimers } from "@/components/ui/footnotes";
 import { Container } from "@/components/ui/layout";
-import { Logo } from "./logo";
 
 function FooterItem({ link }: { link: FooterLink }) {
   if (!link.href) {
@@ -16,7 +15,7 @@ function FooterItem({ link }: { link: FooterLink }) {
 }
 
 /**
- * Dark footer: the full site map in six columns (accordions below 768px),
+ * Dark footer: the full site map in five columns (accordions below 768px),
  * then the entity disclosure, legal links and the numbered disclaimers every
  * footnote on the page resolves to.
  */
@@ -24,9 +23,7 @@ export function SiteFooter() {
   return (
     <footer data-ground="ink-900" data-theme="dark" className="pt-20 pb-12 md:pt-30">
       <Container>
-        <Logo />
-
-        <div className="mt-12 hidden gap-8 md:grid md:grid-cols-3 lg:grid-cols-6">
+        <div className="hidden gap-8 md:grid md:grid-cols-3 lg:grid-cols-5">
           {footerColumns.map((column) => (
             <div key={column.heading} className="flex flex-col gap-4">
               <h2 className="text-label text-fg">{column.heading}</h2>
@@ -41,7 +38,7 @@ export function SiteFooter() {
           ))}
         </div>
 
-        <div className="mt-10 border-t border-line md:hidden">
+        <div className="border-t border-line md:hidden">
           {footerColumns.map((column) => (
             <details key={column.heading} className="group border-b border-line">
               <summary className="flex min-h-14 cursor-pointer items-center justify-between">

@@ -5,21 +5,24 @@ type AccordionItem = { question: string; answer: ReactNode };
 
 /**
  * Exclusive accordion on native `<details name>`: no JavaScript, keyboard
- * accessible, and only one item open at a time. The first item starts open.
+ * accessible, and only one item open at a time. The first item starts open
+ * unless `openFirst` is false.
  */
 export function Accordion({
   name,
   items,
+  openFirst = true,
   className,
 }: {
   name: string;
   items: readonly AccordionItem[];
+  openFirst?: boolean;
   className?: string;
 }) {
   return (
     <div className={cn("border-t border-line", className)}>
       {items.map((item, index) => (
-        <details key={item.question} name={name} open={index === 0} className="group border-b border-line">
+        <details key={item.question} name={name} open={openFirst && index === 0} className="group border-b border-line">
           <summary className="flex min-h-11 cursor-pointer items-center justify-between gap-6 py-6">
             <h3 className="text-heading-sm text-fg">{item.question}</h3>
             <span

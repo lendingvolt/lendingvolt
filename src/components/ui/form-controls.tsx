@@ -61,6 +61,8 @@ export function Input({ id, label, hideLabel, prefix, hint, error, className, ..
 
 type SegmentedOption = { value: string; label: string };
 
+const gridColumns = { 2: "grid-cols-2", 3: "grid-cols-3", 4: "grid-cols-4" } as const;
+
 type SegmentedControlProps = {
   name: string;
   legend: string;
@@ -69,6 +71,11 @@ type SegmentedControlProps = {
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
+  /** `row` keeps short labels on one line at every width instead of wrapping into a grid. */
+  layout?: "auto" | "row";
+  /** A fixed grid at every width, for longer lists such as days and time slots. Overrides `layout`. */
+  columns?: 2 | 3 | 4;
+  error?: string;
   className?: string;
 };
 
@@ -84,17 +91,33 @@ export function SegmentedControl({
   value,
   defaultValue,
   onChange,
+  layout = "auto",
+  columns,
+  error,
   className,
 }: SegmentedControlProps) {
+  const errorId = `${name}-error`;
   return (
-    <fieldset className={cn("min-w-0", className)}>
+    <fieldset
+      className={cn("min-w-0", className)}
+      aria-invalid={error ? true : undefined}
+      aria-describedby={error ? errorId : undefined}
+    >
       <legend className={cn("mb-2 text-body-sm font-medium text-fg", hideLegend && "sr-only")}>
         {legend}
       </legend>
       <div
         className={cn(
-          "grid gap-1 rounded-[26px] border border-line-strong p-1 sm:flex sm:rounded-pill",
-          options.length % 2 === 0 ? "grid-cols-2" : "grid-cols-1",
+          "gap-1 border p-1",
+          error ? "border-negative" : "border-line-strong",
+          columns
+            ? cn("grid rounded-[26px]", gridColumns[columns])
+            : layout === "row"
+              ? "flex rounded-pill"
+              : cn(
+                  "grid rounded-[26px] sm:flex sm:rounded-pill",
+                  options.length % 2 === 0 ? "grid-cols-2" : "grid-cols-1",
+                ),
         )}
       >
         {options.map((option) => (
@@ -118,7 +141,46 @@ export function SegmentedControl({
           </label>
         ))}
       </div>
+      {error && (
+        <p id={errorId} className="mt-2 text-caption text-negative" role="alert">
+          {error}
+        </p>
+      )}
     </fieldset>
+  );
+}
+
+type CheckboxProps = Omit<ComponentPropsWithoutRef<"input">, "type" | "className" | "children"> & {
+  id: string;
+  children: ReactNode;
+  error?: string;
+  className?: string;
+};
+
+/** Native checkbox with its label as the 44px hit area. Never pre-ticked by default. */
+export function Checkbox({ id, children, error, className, ...props }: CheckboxProps) {
+  return (
+    <div className={cn("flex flex-col gap-2", className)}>
+      <label htmlFor={id} className="flex min-h-11 cursor-pointer items-start gap-3 py-1">
+        <input
+          id={id}
+          type="checkbox"
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? `${id}-error` : undefined}
+          className={cn(
+            "mt-0.5 size-5 shrink-0 cursor-pointer rounded-sm accent-cta",
+            error && "outline-2 outline-offset-2 outline-negative",
+          )}
+          {...props}
+        />
+        <span className="text-body-sm text-fg-body">{children}</span>
+      </label>
+      {error && (
+        <p id={`${id}-error`} className="pl-8 text-caption text-negative" role="alert">
+          {error}
+        </p>
+      )}
+    </div>
   );
 }
 

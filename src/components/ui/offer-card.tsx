@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { FlatRateQuote } from "@/lib/loan-math";
 import { formatPercent, formatSGD, formatTenure } from "@/lib/loan-math";
 import { cn } from "@/lib/cn";
@@ -13,6 +14,10 @@ export type OfferCardProps = {
   isBest?: boolean;
   bestLabel?: string;
   cta?: { href: string; label: string };
+  /** A button or other control in place of the `cta` link. */
+  action?: ReactNode;
+  /** Caption under the figures, e.g. what the figures are based on. */
+  note?: ReactNode;
   className?: string;
 };
 
@@ -30,6 +35,8 @@ export function OfferCard({
   isBest,
   bestLabel = "Lowest total cost",
   cta,
+  action,
+  note,
   className,
 }: OfferCardProps) {
   const figures = [
@@ -79,6 +86,10 @@ export function OfferCard({
       <p className="text-caption text-fg-muted">
         Funds: <span className="text-fg">{fundingLabel}</span>
       </p>
+
+      {note && <div className="flex flex-col gap-1 text-caption text-fg-muted">{note}</div>}
+
+      {action}
 
       {cta && (
         <Button href={cta.href} variant={isBest ? "primary" : "secondary"} className="w-full">

@@ -17,4 +17,6 @@ export const sceneLoaders: Record<SceneId, () => Promise<SceneModule>> = {
   "consent-toggles": () => import("./consent-toggles"),
   "rate-vs-market": () => import("./rate-vs-market"),
   "offer-stack": () => import("./offer-stack"),
+  matching: () => import("./matching"),
+  circuit: () => import("./circuit"),
 };

@@ -109,6 +109,33 @@ export function quoteFlatRate(
   };
 }
 
+export type ScheduleRow = {
+  month: number;
+  payment: number;
+  interest: number;
+  principal: number;
+  /** Principal still owed after this payment. */
+  balance: number;
+};
+
+/**
+ * The first `rows` months of a flat-rate schedule. Interest is split evenly
+ * across the tenure, which is how flat-rate loans are usually illustrated;
+ * a lender's own statement may allocate it differently (e.g. Rule of 78).
+ */
+export function repaymentSchedule(quote: FlatRateQuote, rows = quote.months): ScheduleRow[] {
+  const count = Math.min(Math.max(0, Math.floor(rows)), quote.months);
+  const interest = quote.totalInterest / quote.months;
+  const principal = quote.principal / quote.months;
+  return Array.from({ length: count }, (_, index) => ({
+    month: index + 1,
+    payment: quote.monthlyRepayment,
+    interest,
+    principal,
+    balance: Math.max(0, quote.principal - principal * (index + 1)),
+  }));
+}
+
 const sgd0 = new Intl.NumberFormat("en-SG", {
   style: "currency",
   currency: "SGD",

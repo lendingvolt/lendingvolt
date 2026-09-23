@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans } from "next/font/google";
-import { SiteHeader } from "@/components/site/site-header";
-import { SiteFooter } from "@/components/site/site-footer";
 import { PageTheme } from "@/components/site/page-theme";
 import "./globals.css";
 
@@ -35,11 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <PageTheme />
-        <SiteHeader />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+        {children}
       </body>
     </html>
   );

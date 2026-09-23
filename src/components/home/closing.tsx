@@ -1,4 +1,5 @@
-import { closingCta, faq, stats } from "@/content/home";
+import type { ReactNode } from "react";
+import { closingCta, faq, stats, type LoanPurpose } from "@/content/home";
 import { contact } from "@/content/site";
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
@@ -16,41 +17,72 @@ export function Stats() {
   );
 }
 
-export function Faq() {
+type FaqContent = {
+  title: string;
+  link: { label: string; href: string };
+  items: readonly { question: string; answer: ReactNode }[];
+};
+
+/** Title and link on the left, an exclusive accordion on the right. Homepage copy by default. */
+export function Faq({
+  content = faq,
+  name = "home-faq",
+  divider = true,
+}: {
+  content?: FaqContent;
+  name?: string;
+  /** Hairline above, for when the FAQ follows another beige section. */
+  divider?: boolean;
+}) {
   return (
-    <Section ground="surface-1" aria-labelledby="faq-title" className="pt-0 md:pt-0">
+    <Section ground="surface-1" aria-labelledby={`${name}-title`} className={divider ? "pt-0 md:pt-0" : undefined}>
       <Container>
-        <div className="grid gap-10 border-t border-line pt-16 md:pt-30 lg:grid-cols-12 lg:gap-6">
+        <div
+          className={
+            divider
+              ? "grid gap-10 border-t border-line pt-16 md:pt-30 lg:grid-cols-12 lg:gap-6"
+              : "grid gap-10 lg:grid-cols-12 lg:gap-6"
+          }
+        >
           <div className="flex flex-col items-start gap-6 lg:col-span-4">
-            <h2 id="faq-title" className="text-display-md">
-              {faq.title}
+            <h2 id={`${name}-title`} className="text-display-md">
+              {content.title}
             </h2>
-            <Button href={faq.link.href} variant="text">
-              {faq.link.label}
+            <Button href={content.link.href} variant="text">
+              {content.link.label}
             </Button>
           </div>
-          <Accordion name="home-faq" items={faq.items} className="lg:col-span-8" />
+          <Accordion name={name} items={content.items} className="lg:col-span-8" />
         </div>
       </Container>
     </Section>
   );
 }
 
+type ClosingContent = { title: string; body: string; cta: string; secondary: string };
+
 /** Mirrors the hero: one line, the amount field, a quiet way to talk to us. */
-export function ClosingCta() {
+export function ClosingCta({
+  content = closingCta,
+  purpose,
+}: {
+  content?: ClosingContent;
+  purpose?: LoanPurpose;
+}) {
   return (
     <Section ground="ink-900" spacing="roomy" aria-labelledby="closing-title">
       <Container>
         <h2 id="closing-title" className="max-w-[16ch] text-display-lg">
-          {closingCta.title}
+          {content.title}
         </h2>
-        <p className="mt-3 max-w-[48ch] text-body-lg text-fg-muted md:mt-4">{closingCta.body}</p>
+        <p className="mt-3 max-w-[48ch] text-body-lg text-fg-muted md:mt-4">{content.body}</p>
         <AmountForm
-          cta={closingCta.cta}
+          cta={content.cta}
+          defaultPurpose={purpose}
           className="mt-6 md:mt-8"
           secondary={
             <Button href={contact.whatsapp} variant="text" target="_blank" rel="noopener noreferrer">
-              {closingCta.secondary}
+              {content.secondary}
             </Button>
           }
         />

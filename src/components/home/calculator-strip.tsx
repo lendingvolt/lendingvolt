@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { calculator } from "@/content/home";
+import { calculator, type LoanPurpose } from "@/content/home";
 import { loanLimits } from "@/content/offers";
 import { routes } from "@/content/site";
 import { saveIntent } from "@/lib/application-intent";
@@ -10,10 +10,18 @@ import { Button } from "@/components/ui/button";
 import { FootnoteRef } from "@/components/ui/footnotes";
 import { Slider } from "@/components/ui/form-controls";
 import { Container, Section } from "@/components/ui/layout";
+import { cn } from "@/lib/cn";
 import { formatPercent, formatSGD, formatTenure, quoteFlatRate } from "@/lib/loan-math";
 
 /** Slim inline calculator: three sliders and a live repayment readout. */
-export function CalculatorStrip() {
+export function CalculatorStrip({
+  purpose = "personal",
+  className,
+}: {
+  purpose?: LoanPurpose;
+  /** Extra section classes, e.g. top padding when it does not follow another white section. */
+  className?: string;
+}) {
   const router = useRouter();
   const [amount, setAmount] = useState(loanLimits.amount.initial);
   const [months, setMonths] = useState(loanLimits.tenure.initial);
@@ -22,7 +30,12 @@ export function CalculatorStrip() {
   const quote = useMemo(() => quoteFlatRate(amount, months, rate), [amount, months, rate]);
 
   return (
-    <Section ground="surface-0" spacing="none" aria-labelledby="calculator-title" className="pb-16 md:pb-30">
+    <Section
+      ground="surface-0"
+      spacing="none"
+      aria-labelledby="calculator-title"
+      className={cn("pb-16 md:pb-30", className)}
+    >
       <Container>
         <div className="rounded-xl border border-line bg-surface-1 p-6 md:p-10 lg:p-12">
           <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
@@ -90,7 +103,7 @@ export function CalculatorStrip() {
                 variant="text"
                 className="self-start"
                 onClick={() => {
-                  saveIntent({ amount, purpose: "personal" });
+                  saveIntent({ amount, purpose });
                   router.push(routes.apply);
                 }}
               >

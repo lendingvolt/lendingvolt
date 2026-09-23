@@ -15,7 +15,7 @@ export function Hero() {
       className="-mt-(--header-h) overflow-hidden"
     >
       <GraphicSlot
-        scene="converge"
+        scene="circuit"
         ground="transparent"
         tone="dark"
         driver="scroll"

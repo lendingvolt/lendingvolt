@@ -15,6 +15,8 @@ type AmountFormProps = {
   cta: string;
   /** Show the loan-purpose control (hero) or amount only (closing CTA). */
   withPurpose?: boolean;
+  /** Purpose saved when the control is hidden, and the one selected first when shown. */
+  defaultPurpose?: LoanPurpose;
   secondary?: ReactNode;
   className?: string;
 };
@@ -23,11 +25,17 @@ type AmountFormProps = {
  * Amount (and optionally purpose) capture. Validates with zod, keeps the
  * result in sessionStorage, and continues to the apply page.
  */
-export function AmountForm({ cta, withPurpose = false, secondary, className }: AmountFormProps) {
+export function AmountForm({
+  cta,
+  withPurpose = false,
+  defaultPurpose = "personal",
+  secondary,
+  className,
+}: AmountFormProps) {
   const router = useRouter();
   const id = useId();
   const [amount, setAmount] = useState("");
-  const [purpose, setPurpose] = useState<LoanPurpose>("personal");
+  const [purpose, setPurpose] = useState<LoanPurpose>(defaultPurpose);
   const [error, setError] = useState<string>();
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {

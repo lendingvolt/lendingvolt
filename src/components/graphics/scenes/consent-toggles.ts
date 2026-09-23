@@ -52,7 +52,8 @@ const createConsentToggles: SceneFactory = (): Scene => {
 
     resize(w, h) {
       width = w;
-      trackW = Math.min(w * 0.44, h * 0.3 * 2.2);
+      // Three tracks and their gaps stand about 1.8 track-widths tall; keep them inside 80% of the height.
+      trackW = Math.min(w * 0.44, h * 0.44);
       trackH = trackW * 0.44;
       pitch = trackH * 1.55;
       left = (w - trackW) / 2;

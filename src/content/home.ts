@@ -15,7 +15,7 @@ export const loanPurposes = [
 export type LoanPurpose = (typeof loanPurposes)[number]["value"];
 
 export const hero = {
-  title: "Switch on a better rate.",
+  title: "Supercharge your loan search.",
   subheadBefore: "One application. Offers from ",
   lenderCount: "[N]",
   subheadMiddle: " licensed lenders in Singapore. A soft check that ",
@@ -179,7 +179,7 @@ export const faq = {
     {
       question: "Who are your lenders?",
       answer:
-        "Banks and financial institutions regulated by the Monetary Authority of Singapore, and moneylenders licensed by the Ministry of Law. Every lender on our panel is listed on our lenders page with its licence details.",
+        "Banks and financial institutions regulated by the Monetary Authority of Singapore, and moneylenders licensed by the Ministry of Law. The panel changes over time.",
     },
     {
       question: "How fast can I get funds?",

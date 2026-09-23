@@ -7,7 +7,7 @@
 export const footnotes = [
   {
     id: "lender-count",
-    text: "[N] is the number of licensed lenders on the Lendingvolt panel as at [date]. The panel changes over time; the current list is on our lenders page.",
+    text: "[N] is the number of licensed lenders on the Lendingvolt panel as at [date]. The panel changes over time.",
   },
   {
     id: "soft-search",
@@ -40,6 +40,26 @@ export const footnotes = [
   {
     id: "stat-minutes",
     text: "Median time from the first field to submission for completed applications between [start date] and [end date].",
+  },
+  {
+    id: "market-typical",
+    text: "Typical figures for Singapore loans of this type as at [date], drawn from published bank terms and government scheme rules. They are not quotes or eligibility decisions; each lender sets its own criteria, rates and fees. To confirm before launch.",
+  },
+  {
+    id: "moneylender-caps",
+    text: "Licensed moneylenders are regulated by the Ministry of Law. Interest is capped at 4% a month, late interest at 4% a month on the late amount, late fees at S$60 a month and the upfront fee at 10% of the principal; total charges cannot exceed the principal. Unsecured loan limits depend on annual income and residency. To confirm against the Registry of Moneylenders before launch.",
+  },
+  {
+    id: "schedule-split",
+    text: "Illustration only. Interest is spread evenly across the tenure; a lender's statement may allocate it differently, for example under the Rule of 78, which changes how much you save by repaying early.",
+  },
+  {
+    id: "affordability-method",
+    text: "A guide, not a lending decision. The amount keeps all your debt repayments at or below 40% of gross income, leaves at least 20% of income after expenses and repayments, and stays within the typical bank limit of 4× monthly income (10× from S$120,000 a year). It assumes the flat rate you choose and no fees. Lenders apply their own checks, including your credit report.",
+  },
+  {
+    id: "lender-example",
+    text: "Crawfort's figures here are a worked example using an assumed 12% p.a. flat rate and a 5% approval fee. They are not Crawfort's rates. Crawfort sets its own rate and fees after assessing your application.",
   },
 ] as const;
 

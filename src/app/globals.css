@@ -375,6 +375,19 @@ html.has-page-theme [data-ground]:not([data-theme-lock]) {
     text-wrap: pretty;
   }
 
+  a[href],
+  button:not(:disabled),
+  summary,
+  label:has(:is(input, select)),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
   :focus-visible {
     outline: 2px solid var(--cta);
     outline-offset: 2px;
@@ -436,6 +449,41 @@ html.has-page-theme[data-page-theme="light"] .hero-graphic {
 @media (prefers-reduced-motion: no-preference) {
   .marquee-track {
     animation: marquee 40s linear infinite;
+  }
+}
+
+/* Application flow: each screen fades and rises in; matching steps through. */
+@keyframes flow-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes flow-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .flow-step {
+    animation: flow-rise 500ms ease-out both;
+  }
+  .flow-status {
+    animation: flow-rise 500ms ease-out both;
+    animation-delay: calc(300ms + var(--i, 0) * 1100ms);
+  }
+  .flow-fill {
+    transform-origin: left;
+    animation: flow-fill var(--duration, 5000ms) linear both;
   }
 }
 

@@ -96,8 +96,8 @@ export function SiteHeader() {
           >
             Log in
           </Link>
-          <Button href={routes.compare} size="sm">
-            Compare rates
+          <Button href={routes.apply} size="sm">
+            Apply Now
           </Button>
           <button
             type="button"

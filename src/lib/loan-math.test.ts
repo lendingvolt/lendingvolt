@@ -4,8 +4,27 @@ import {
   formatSGD,
   formatTenure,
   quoteFlatRate,
+  repaymentSchedule,
   solveMonthlyRate,
 } from "./loan-math";
+
+describe("repaymentSchedule", () => {
+  it("splits each equal payment into even interest and principal", () => {
+    const quote = quoteFlatRate(20_000, 36, 0.0388);
+    const rows = repaymentSchedule(quote, 6);
+    expect(rows).toHaveLength(6);
+    expect(rows[0]).toMatchObject({ month: 1 });
+    expect(rows[0].interest + rows[0].principal).toBeCloseTo(quote.monthlyRepayment, 6);
+    expect(rows[5].balance).toBeCloseTo(20_000 - (20_000 / 36) * 6, 6);
+  });
+
+  it("reaches a zero balance on the last payment and caps the row count", () => {
+    const quote = quoteFlatRate(12_000, 12, 0.05);
+    const rows = repaymentSchedule(quote, 99);
+    expect(rows).toHaveLength(12);
+    expect(rows.at(-1)?.balance).toBeCloseTo(0, 6);
+  });
+});
 
 describe("quoteFlatRate", () => {
   it("charges flat interest on the original principal", () => {
