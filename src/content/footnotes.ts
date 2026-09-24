@@ -6,10 +6,6 @@
 
 export const footnotes = [
   {
-    id: "lender-count",
-    text: "[N] is the number of licensed lenders on the Lendingvolt panel as at [date]. The panel changes over time.",
-  },
-  {
     id: "lender-vetting",
     text: "Lendingvolt reviews each lender individually before adding it to the panel, covering its licence, customer service and product knowledge. Passing the review is not an endorsement of any lender and does not guarantee approval, a particular rate or a level of service. Review criteria and how often lenders are re-reviewed to confirm before launch.",
   },
@@ -32,6 +28,10 @@ export const footnotes = [
   {
     id: "calculator",
     text: "Indicative only. The calculator applies a flat annual rate over the full tenure with equal monthly repayments and no fees. The effective interest rate (EIR) is derived from those repayments. Actual rates depend on the lender's assessment.",
+  },
+  {
+    id: "switching-calculator",
+    text: "Illustration only. Both offers are calculated as flat-rate loans for the same amount and tenure, with equal monthly repayments and no fees. It does not mean a lower rate will be offered to you; each lender sets its rate after assessing your application.",
   },
   {
     id: "stat-matched",
@@ -60,10 +60,6 @@ export const footnotes = [
   {
     id: "affordability-method",
     text: "A guide, not a lending decision. The amount keeps all your debt repayments at or below 40% of gross income, leaves at least 20% of income after expenses and repayments, and stays within the typical bank limit of 4× monthly income (10× from S$120,000 a year). It assumes the flat rate you choose and no fees. Lenders apply their own checks, including your credit report.",
-  },
-  {
-    id: "lender-example",
-    text: "Crawfort's figures here are a worked example using an assumed 12% p.a. flat rate and a 5% approval fee. They are not Crawfort's rates. Crawfort sets its own rate and fees after assessing your application.",
   },
 ] as const;
 

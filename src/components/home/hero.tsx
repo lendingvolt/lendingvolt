@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { hero } from "@/content/home";
-import { FootnoteRef } from "@/components/ui/footnotes";
 import { Container, Section } from "@/components/ui/layout";
 import { HeroScene } from "@/components/scenes/hero-scene";
 import { cn } from "@/lib/cn";
@@ -23,10 +22,7 @@ export function Hero() {
               {hero.title}
             </h1>
             <p className="mt-3 max-w-[52ch] text-body-lg text-fg-muted md:mt-4">
-              {hero.subheadBefore}
-              <span className="tabular">{hero.lenderCount}</span>
-              <FootnoteRef id="lender-count" />
-              {hero.subheadAfter}
+              {hero.subhead}
               <span className="ml-6 hidden align-middle lg:inline-flex">
                 <TrustStrip inline />
               </span>

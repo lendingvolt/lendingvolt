@@ -22,6 +22,28 @@ const SIZES = {
   card: { box: "h-[380px] md:h-[470px]", content: "scale-[0.7] md:scale-[0.84]" },
 } satisfies Record<string, PanelSize>;
 
+type SizeKey = keyof typeof SIZES;
+
+/** From 1024px, tiles in a two-up grid share one height and scale to fit the half-width cell. */
+export const TILE_HEIGHT = "lg:h-[440px]";
+
+const TILE_SCALES: Record<SizeKey, string> = {
+  form: "lg:top-1/2 lg:-translate-y-1/2 lg:scale-100",
+  rows: "lg:scale-[0.84]",
+  card: "lg:scale-[0.7]",
+};
+
+function sized(key: SizeKey, isTile: boolean): PanelSize {
+  const size = SIZES[key];
+  if (!isTile) return size;
+  return { box: cn(size.box, TILE_HEIGHT), content: cn(size.content, TILE_SCALES[key]) };
+}
+
+type FragmentProps = {
+  /** Uniform height for a two-up grid instead of sizing to a full-width step row. */
+  tile?: boolean;
+};
+
 /** Dark panel holding a hard crop of the product, enlarged and bled off the right edge. */
 function Panel({
   timelineId,
@@ -53,11 +75,11 @@ const pill =
   "relative flex h-11 min-w-0 flex-1 items-center justify-center rounded-pill px-4 text-body-sm font-medium whitespace-nowrap";
 
 /** Step 1: the hero form, the amount typing in and Consolidate selecting. */
-export function AmountFragment() {
+export function AmountFragment({ tile = false }: FragmentProps) {
   return (
     <Panel
       timelineId="step-amount"
-      size={SIZES.form}
+      size={sized("form", tile)}
       label={`The application form: loan amount S$${AMOUNT}, purpose Consolidate.`}
     >
       <div className="flex max-w-[520px] gap-1 rounded-pill border border-line-strong p-1">
@@ -106,11 +128,11 @@ export function AmountFragment() {
 }
 
 /** Step 2: the matched offers arriving as rows, cheapest total flagged. */
-export function OfferRowsFragment() {
+export function OfferRowsFragment({ tile = false }: FragmentProps) {
   return (
     <Panel
       timelineId="step-offers"
-      size={SIZES.rows}
+      size={sized("rows", tile)}
       label={`Matched offers side by side, each with rate, monthly repayment and total payable. ${offers.find((offer) => offer.isBest)?.lender.name} has the lowest total cost.`}
     >
       <ul className="flex flex-col gap-3">
@@ -149,12 +171,12 @@ export function OfferRowsFragment() {
 }
 
 /** Step 3: the top offer selected, its checkmark drawn and Continue pressed. */
-export function ChooseFragment() {
+export function ChooseFragment({ tile = false }: FragmentProps) {
   const best = offers.find((offer) => offer.isBest) ?? offers[0];
   return (
     <Panel
       timelineId="step-choose"
-      size={SIZES.card}
+      size={sized("card", tile)}
       label={`${best.lender.name} selected, with Continue with ${best.lender.name} pressed.`}
     >
       <div className="relative w-[340px]">

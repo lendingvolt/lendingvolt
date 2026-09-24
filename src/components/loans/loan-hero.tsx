@@ -6,7 +6,7 @@ import { OfferCard } from "@/components/ui/offer-card";
 import { cn } from "@/lib/cn";
 
 /** Two offer cards and the sort control, enlarged and bled off the right edge. */
-function OfferFragment({ amount, months, product }: { amount: number; months: number; product?: string }) {
+export function OfferFragment({ amount, months, product }: { amount: number; months: number; product?: string }) {
   const offers = quoteOffers(amount, months).slice(0, 2);
   return (
     <div

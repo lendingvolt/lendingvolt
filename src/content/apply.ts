@@ -7,22 +7,21 @@ import type { ApplicationDraft } from "@/lib/application";
 export const applyCopy = {
   loan: {
     title: "How much would you like to borrow?",
-    body: "Amount, purpose and how long you'd like to repay. You can change any of this before you send it.",
+    body: "Amount, purpose and how long you'd like to repay.",
     amountLabel: "Loan amount",
     purposeLegend: "What is the loan for?",
     tenureLegend: "Repayment period, in months",
   },
   softCheck: {
-    title: "A soft check. No trace left behind.",
-    bodyBefore: "We match you using a soft search, which does not affect your credit score",
-    bodyAfter: " A lender may run a full credit bureau search once you proceed with them, and they will tell you before they do.",
+    title: "Your credit score stays as it is.",
+    bodyBefore: "We match you with lenders without changing it",
+    bodyAfter: " If you choose a lender, they may check your credit report, and they will tell you before they do.",
   },
   singpass: {
     title: "Fill this in with Singpass.",
-    body: "Myinfo fills in your name, contact details, residency and income from government records. You can check and change anything before you send it.",
+    body: "Myinfo fills in your name, contact details, residency and income from government records.",
     myinfo: "Retrieve Myinfo with Singpass",
     manual: "Fill in manually",
-    prototypeNote: "Prototype: this uses sample details and does not connect to Singpass.",
   },
   about: {
     title: "About you",

@@ -4,7 +4,6 @@ import { parseAmount } from "@/lib/application-intent";
 import { singaporeDate } from "@/lib/booking";
 import { formatSGD, formatTenure, quoteFlatRate } from "@/lib/loan-math";
 import { Button } from "@/components/ui/button";
-import { FootnoteRef } from "@/components/ui/footnotes";
 import { OfferCard } from "@/components/ui/offer-card";
 import { FlowScreen } from "./flow-screen";
 import { RenderCard } from "./render-card";
@@ -39,10 +38,7 @@ export function ChooseStep({ state, dispatch, nav }: StepProps) {
           fundingLabel="After an in-person visit"
           note={
             <>
-              <p>
-                {copy.exampleBadge(lender.name)}
-                <FootnoteRef id="lender-example" />.
-              </p>
+              <p>{copy.exampleBadge(lender.name)}.</p>
               <p>{lender.loanLimit}.</p>
             </>
           }

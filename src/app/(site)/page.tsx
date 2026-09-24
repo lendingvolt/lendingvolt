@@ -9,6 +9,11 @@ import { UseCases } from "@/components/home/use-cases";
 import { ValueGrid } from "@/components/home/value-grid";
 import { ClosingScene } from "@/components/scenes/closing-scene";
 
+/**
+ * Section order keeps the page to two colour changes: the dark hero, then
+ * every light section together, then one dark band — testimonials, the
+ * closing CTA and the footer, contiguous — at the very end.
+ */
 export default function Home() {
   return (
     <>
@@ -19,9 +24,9 @@ export default function Home() {
       <ComparisonShowcase />
       <CalculatorStrip />
       <UseCases />
-      <Testimonials />
       <Stats />
       <Faq />
+      <Testimonials />
       <ClosingCta scene={<ClosingScene className="aspect-[2/1] w-full" />} />
     </>
   );

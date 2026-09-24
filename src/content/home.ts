@@ -16,9 +16,7 @@ export type LoanPurpose = (typeof loanPurposes)[number]["value"];
 
 export const hero = {
   title: "Supercharge your loan search.",
-  subheadBefore: "One application. Offers from ",
-  lenderCount: "[N]",
-  subheadAfter: " licensed lenders in Singapore.",
+  subhead: "Get matched instantly with banks and licensed lenders.",
   cta: "See my offers",
   /** Rendered as the Singpass wordmark followed by `label`. */
   singpass: {
@@ -153,7 +151,7 @@ export const testimonials = {
 };
 
 export const stats = [
-  { figure: "[N]", label: "licensed lenders", footnote: "lender-count" },
+  { figure: "[N]", label: "licensed lenders" },
   { figure: "S$[X]M", label: "matched", footnote: "stat-matched" },
   { figure: "[N]", label: "applications", footnote: "stat-applications" },
   { figure: "[X]", label: "minutes average application", footnote: "stat-minutes" },

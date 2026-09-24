@@ -1,6 +1,5 @@
 import type { CSSProperties } from "react";
 import { applyCopy, matchingDuration } from "@/content/apply";
-import { FootnoteRef } from "@/components/ui/footnotes";
 import { FlowScreen } from "./flow-screen";
 import { RenderCard } from "./render-card";
 import type { StepProps } from "./types";
@@ -16,7 +15,6 @@ export function MatchingStep({ nav }: StepProps) {
         <>
           {copy.titleBefore}
           {copy.lenderCount}
-          <FootnoteRef id="lender-count" />
           {copy.titleAfter}
         </>
       }

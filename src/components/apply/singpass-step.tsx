@@ -24,7 +24,6 @@ export function SingpassStep({ dispatch, nav }: StepProps) {
           <Button type="submit" variant="text" arrow={false} className="w-full">
             {copy.manual}
           </Button>
-          <p className="text-center text-caption text-fg-muted">{copy.prototypeNote}</p>
         </>
       }
     />

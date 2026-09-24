@@ -19,7 +19,7 @@ export type LenderProfile = {
   loanLimit: string;
   /**
    * Terms used only to work out example figures. Not the lender's rates:
-   * every place that shows them says so and carries the `lender-example` footnote.
+   * every place that shows them says so on the card.
    */
   exampleTerms: { flatRate: number; feeRate: number };
 };

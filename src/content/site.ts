@@ -163,7 +163,6 @@ export const entityDisclosure = {
 /** Placeholder pages: one per Phase 1 route that is not yet built. */
 export const stubPages = {
   compare: { title: "Compare offers", group: "Compare" },
-  howItWorks: { title: "How it works", group: "Company" },
   contact: { title: "Contact", group: "Contact" },
   login: { title: "Log in", group: "Account" },
   applications: { title: "My applications", group: "Account" },
