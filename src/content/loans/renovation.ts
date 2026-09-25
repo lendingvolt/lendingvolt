@@ -11,8 +11,7 @@ export const renovationLoan: LoanPageContent = {
       "Compare renovation loans for HDB flats and private homes from Singapore banks and lenders. See the monthly repayment, total payable and EIR before you apply. Lendingvolt is a comparison platform, not a lender.",
   },
   hero: {
-    eyebrow: "Renovation loans",
-    title: "Renovate without resistance.",
+    title: "Renovation loans that work without resistance.",
     subhead:
       "Compare renovation loans for HDB flats and private homes in one application. Fixed monthly repayments, and the full cost of the works shown before you apply.",
     cta: "See my offers",

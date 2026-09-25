@@ -23,7 +23,6 @@ export type LoanPageContent = {
   purpose: LoanPurpose;
   metadata: { title: string; description: string };
   hero: {
-    eyebrow: string;
     title: string;
     subhead: string;
     cta: string;

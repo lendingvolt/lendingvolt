@@ -14,8 +14,7 @@ export const businessLoan: LoanPageContent = {
       "Compare business loans for working capital, stock and payroll from Singapore banks and licensed lenders, including government-backed options. Lendingvolt is a comparison platform, not a lender.",
   },
   hero: {
-    eyebrow: "Business loans",
-    title: "Keep the current flowing.",
+    title: "Business loans that keep the current flowing.",
     subhead:
       "Compare business loans for working capital, stock and payroll in one application. Offers from banks and licensed lenders, with the total cost of each shown side by side.",
     cta: "See my offers",

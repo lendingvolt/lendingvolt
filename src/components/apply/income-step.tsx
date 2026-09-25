@@ -15,7 +15,13 @@ export function IncomeStep({ state, dispatch, nav }: StepProps) {
     <FlowScreen
       {...nav}
       title={copy.title}
-      body={<p>{copy.body}</p>}
+      body={
+        <p>
+          {copy.body}
+          <br />
+          {copy.noDocuments}
+        </p>
+      }
       onSubmit={() => dispatch({ type: "next" })}
       actions={
         <Button type="submit" className="w-full">
@@ -32,7 +38,7 @@ export function IncomeStep({ state, dispatch, nav }: StepProps) {
         name="apply-employment"
         legend={copy.employmentLegend}
         options={employmentOptions}
-        layout="row"
+        columns={2}
         value={draft.employment}
         error={errors.employment}
         onChange={(value) => dispatch({ type: "update", patch: { employment: value as Employment } })}

@@ -14,8 +14,7 @@ export const personalLoan: LoanPageContent = {
       "Compare personal loans from Singapore banks and licensed moneylenders. See the monthly repayment, total payable and EIR before you apply. Lendingvolt is a comparison platform, not a lender.",
   },
   hero: {
-    eyebrow: "Personal loans",
-    title: "Power the plans you've already made.",
+    title: "Personal loans that power the plans you've made.",
     subhead:
       "Compare personal loans from banks and licensed moneylenders in one application. Fixed monthly repayments, and every fee shown before you apply.",
     cta: "See my offers",

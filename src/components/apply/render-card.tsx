@@ -9,7 +9,7 @@ export function RenderCard({ scene, tone = "light" }: { scene: SceneId; tone?: "
       scene={scene}
       ground={tone === "dark" ? "ink-900" : "surface-1"}
       className={cn(
-        "aspect-[3/2] rounded-lg border",
+        "aspect-[3/2] rounded-lg border md:aspect-auto md:h-[220px]",
         tone === "dark" ? "border-[var(--border-dark)]" : "border-line",
       )}
     />

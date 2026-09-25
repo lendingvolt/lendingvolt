@@ -18,8 +18,7 @@ export const howItWorksPage = {
       "One application, a soft search, and every matched offer side by side with its full cost. How Lendingvolt works, from the first field to the funds. Lendingvolt is a comparison platform, not a lender.",
   },
   hero: {
-    eyebrow: "How it works",
-    title: "Apply once. Compare every offer.",
+    title: "How Lendingvolt works. Apply once. Compare every offer.",
     subhead:
       "Tell us what you need in around two minutes. We send it to the licensed lenders on our panel and bring their offers back to one screen, with the full cost of each.",
     points: [

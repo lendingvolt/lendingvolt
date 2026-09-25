@@ -13,13 +13,15 @@ export const applyCopy = {
     tenureLegend: "Repayment period, in months",
   },
   softCheck: {
-    title: "Your credit score stays as it is.",
-    bodyBefore: "We match you with lenders without changing it",
+    title: "Matching you won't affect your credit score.",
+    bodyBefore: "Applying doesn't affect or show up on your credit report",
     bodyAfter: " If you choose a lender, they may check your credit report, and they will tell you before they do.",
   },
   singpass: {
-    title: "Fill this in with Singpass.",
-    body: "Myinfo fills in your name, contact details, residency and income from government records.",
+    title: "Retrieve your Myinfo with Singpass.",
+    bodyBefore:
+      "Myinfo retrieves your name, contact details, residency and income from government records, so there's less to type. Complete applications like these are matched with an offer up to 90% of the time",
+    bodyAfter: ".",
     myinfo: "Retrieve Myinfo with Singpass",
     manual: "Fill in manually",
   },
@@ -31,13 +33,14 @@ export const applyCopy = {
     mobileLabel: "Mobile number",
     emailLabel: "Email",
     residencyLegend: "Residency status",
-    myinfoBadge: "From Myinfo · sample data",
+    myinfoBadge: "From Myinfo",
   },
   income: {
     title: "Your income",
-    body: "Lenders use this to work out what they can offer. No documents at this stage.",
+    body: "Lenders use this to work out what they can offer.",
+    noDocuments: "No documents at this stage.",
     employmentLegend: "How do you earn your income?",
-    incomeLabel: "Monthly income before tax",
+    incomeLabel: "Gross Monthly Income",
     incomeHint: "Your gross salary, or average monthly earnings if you're self-employed.",
   },
   review: {
@@ -46,13 +49,12 @@ export const applyCopy = {
     edit: "Edit",
   },
   consent: {
-    title: "You decide who sees your details.",
-    body: "We send your application only to lenders on our panel that may lend to you. Nobody else sees it.",
+    title: "Only matched lenders see your details.",
+    body: "We send your application to lenders on our panel that may lend to you, and nobody else.",
     pdpaBefore:
       "I agree to Lendingvolt collecting my name, contact details, residency, employment and income, and sharing them with matched lenders on its panel so they can assess my application and make me an offer. I have read the ",
     pdpaLink: "PDPA Notice",
     pdpaAfter: ".",
-    marketing: "Send me occasional emails about rates and guides. Optional, and you can unsubscribe at any time.",
     submit: "See my offers",
     note: "Sending your application does not commit you to a loan.",
   },

@@ -342,7 +342,7 @@ export const faqPage = {
         {
           question: "Will you send me marketing emails?",
           answer: [
-            "Only if you ask. The marketing box on the application is unticked, and you can unsubscribe at any time.",
+            "No. We don't collect marketing consent as part of the application, and we don't send marketing email.",
           ],
         },
         {

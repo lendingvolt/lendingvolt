@@ -1,5 +1,6 @@
 import { applyCopy, sampleMyinfo } from "@/content/apply";
 import { Button } from "@/components/ui/button";
+import { FootnoteRef } from "@/components/ui/footnotes";
 import { FlowScreen } from "./flow-screen";
 import { RenderCard } from "./render-card";
 import { SingpassButton } from "./singpass-button";
@@ -12,7 +13,13 @@ export function SingpassStep({ dispatch, nav }: StepProps) {
     <FlowScreen
       {...nav}
       title={copy.title}
-      body={<p>{copy.body}</p>}
+      body={
+        <p>
+          {copy.bodyBefore}
+          <FootnoteRef id="singpass-match-rate" />
+          {copy.bodyAfter}
+        </p>
+      }
       visual={<RenderCard scene="fingerprint" />}
       onSubmit={() => dispatch({ type: "next" })}
       actions={

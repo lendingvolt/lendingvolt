@@ -1,7 +1,7 @@
 import type { LoanPageContent } from "@/content/loans/types";
 import { quoteOffers, sortOptions } from "@/components/home/offer-quotes";
 import { AmountForm } from "@/components/home/amount-form";
-import { Container, Eyebrow, Section } from "@/components/ui/layout";
+import { Container, Section } from "@/components/ui/layout";
 import { OfferCard } from "@/components/ui/offer-card";
 import { cn } from "@/lib/cn";
 
@@ -47,15 +47,14 @@ export function OfferFragment({ amount, months, product }: { amount: number; mon
   );
 }
 
-/** Dark band: eyebrow, headline, one literal line, the amount form, the disclosure, then the product. */
+/** Dark band: headline (names the loan type itself), one literal line, the amount form, the disclosure, then the product. */
 export function LoanHero({ content }: { content: LoanPageContent }) {
   const { hero, example, purpose } = content;
   return (
     <Section ground="ink-900" spacing="none" aria-labelledby="loan-hero-title" className="-mt-(--header-h) overflow-hidden">
       <Container className="grid gap-12 pt-[calc(var(--header-h)+64px)] lg:min-h-[80vh] lg:grid-cols-12 lg:gap-6 lg:pt-[calc(var(--header-h)+32px)]">
         <div className="flex flex-col justify-center lg:col-span-6 lg:py-24">
-          <Eyebrow>{hero.eyebrow}</Eyebrow>
-          <h1 id="loan-hero-title" className="mt-4 max-w-[14ch] text-display-lg">
+          <h1 id="loan-hero-title" className="max-w-[16ch] text-display-lg">
             {hero.title}
           </h1>
           <p className="mt-3 max-w-[52ch] text-body-lg text-fg-muted md:mt-4">{hero.subhead}</p>

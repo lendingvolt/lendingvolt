@@ -14,6 +14,10 @@ export const footnotes = [
     text: "A soft search does not affect your credit score. A lender may run a full credit bureau search once you proceed with them, and they will tell you before they do.",
   },
   {
+    id: "singpass-match-rate",
+    text: "Applications completed through Singpass Myinfo received at least one matched offer up to 90% of the time over [period]. Source: [internal records]. This is not a guarantee of approval; each lender still assesses every application on its own. To confirm before launch.",
+  },
+  {
     id: "revenue",
     text: "Lenders pay Lendingvolt a fee when a loan completes. The fee does not change the rate a lender offers you, and offers are ordered only by the sort you choose.",
   },

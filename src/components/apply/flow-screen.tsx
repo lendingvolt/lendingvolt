@@ -16,6 +16,8 @@ type FlowScreenProps = {
   actions?: ReactNode;
   onSubmit?: () => void;
   children?: ReactNode;
+  /** Vertical gap between children; tighter for dense review-style sections. */
+  gap?: "gap-4" | "gap-6";
 };
 
 /**
@@ -33,6 +35,7 @@ export function FlowScreen({
   actions,
   onSubmit,
   children,
+  gap = "gap-6",
 }: FlowScreenProps) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -78,19 +81,19 @@ export function FlowScreen({
         </div>
       )}
 
-      <div className={cn("flex flex-col", progress || onBack ? "mt-10 md:mt-16" : "mt-4 md:mt-12")}>
+      <div className={cn("flex flex-col", progress || onBack ? "mt-10 md:mt-10" : "mt-4 md:mt-8")}>
         <h1 id={FLOW_HEADING_ID} tabIndex={-1} className="text-display-md outline-none">
           {title}
         </h1>
-        {body && <div className="mt-3 prose-width text-body-lg md:mt-4">{body}</div>}
+        {body && <div className="mt-3 prose-width text-body-lg md:mt-3">{body}</div>}
       </div>
 
-      {visual && <div className="mt-8">{visual}</div>}
+      {visual && <div className="mt-8 md:mt-6">{visual}</div>}
 
-      {children && <div className="mt-8 flex flex-col gap-6">{children}</div>}
+      {children && <div className={cn("mt-8 md:mt-6 flex flex-col", gap)}>{children}</div>}
 
       {actions && (
-        <div className="sticky bottom-0 z-10 -mx-5 mt-auto flex flex-col gap-2 bg-bg/92 px-5 pt-6 pb-[max(16px,env(safe-area-inset-bottom))] backdrop-blur-md md:static md:mx-0 md:mt-10 md:bg-transparent md:px-0 md:pb-0 md:backdrop-blur-none">
+        <div className="sticky bottom-0 z-10 -mx-5 mt-auto flex flex-col gap-2 bg-bg/92 px-5 pt-6 pb-[max(16px,env(safe-area-inset-bottom))] backdrop-blur-md md:static md:mx-0 md:mt-6 md:bg-transparent md:px-0 md:pb-0 md:backdrop-blur-none">
           {actions}
         </div>
       )}

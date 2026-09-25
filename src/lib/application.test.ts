@@ -39,7 +39,7 @@ describe("validateStep", () => {
     expect(validateStep("income", draft).employment).toBe("Choose how you earn your income.");
   });
 
-  it("requires PDPA consent but not marketing consent", () => {
+  it("requires PDPA consent before submitting", () => {
     const draft = { ...createInitialState().draft, ...complete };
     expect(validateStep("consent", draft).pdpaConsent).toMatch(/Tick the box/);
     expect(validateStep("consent", { ...draft, pdpaConsent: true })).toEqual({});

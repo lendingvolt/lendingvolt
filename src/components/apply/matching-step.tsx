@@ -19,6 +19,7 @@ export function MatchingStep({ nav }: StepProps) {
         </>
       }
       visual={<RenderCard scene="matching" tone="dark" />}
+      gap="gap-4"
     >
       <div
         aria-hidden
@@ -29,7 +30,7 @@ export function MatchingStep({ nav }: StepProps) {
           style={{ "--duration": `${matchingDuration.full}ms` } as CSSProperties}
         />
       </div>
-      <ol role="status" className="flex flex-col gap-3">
+      <ol role="status" className="flex flex-col gap-2">
         {copy.statuses.map((status, index) => (
           <li
             key={status}

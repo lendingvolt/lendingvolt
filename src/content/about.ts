@@ -14,8 +14,7 @@ export const about = {
       "Who runs Lendingvolt, how we're paid, and the licensed lenders we work with. Lendingvolt is a loan comparison platform in Singapore, not a lender.",
   },
   hero: {
-    eyebrow: "About Lendingvolt",
-    title: "We compare. You decide.",
+    title: "Lendingvolt compares. You decide.",
     subhead:
       "Lendingvolt is a loan comparison platform for Singapore. One application goes to licensed lenders, and every offer comes back with its full cost shown, so you choose on the numbers.",
     link: { label: "How it works", href: routes.howItWorks },

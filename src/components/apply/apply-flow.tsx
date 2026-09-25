@@ -102,7 +102,7 @@ export function ApplyFlow() {
   const Screen = screens[state.step];
 
   return (
-    <div className="mx-auto flex w-full max-w-[600px] flex-1 flex-col px-5 pt-4 pb-10 md:px-8 md:pt-8 md:pb-24">
+    <div className="mx-auto flex w-full max-w-[600px] flex-1 flex-col px-5 pt-4 pb-10 md:px-8 md:pt-6 md:pb-12">
       <div key={state.step} className="flow-step flex flex-1 flex-col">
         <Screen state={state} dispatch={dispatch} nav={nav} />
       </div>

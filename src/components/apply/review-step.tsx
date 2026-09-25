@@ -14,6 +14,7 @@ export function ReviewStep({ state, dispatch, nav }: StepProps) {
       title={copy.title}
       body={<p>{copy.body}</p>}
       onSubmit={() => dispatch({ type: "next" })}
+      gap="gap-4"
       actions={
         <Button type="submit" className="w-full">
           {applyCopy.actions.continue}
@@ -26,7 +27,7 @@ export function ReviewStep({ state, dispatch, nav }: StepProps) {
           aria-labelledby={`review-${group.step}`}
           className="rounded-lg border border-line px-6"
         >
-          <header className="flex min-h-14 items-center justify-between gap-4 border-b border-line">
+          <header className="flex min-h-12 items-center justify-between gap-4 border-b border-line">
             <h2 id={`review-${group.step}`} className="text-heading-sm">
               {group.title}
             </h2>
@@ -41,7 +42,7 @@ export function ReviewStep({ state, dispatch, nav }: StepProps) {
           </header>
           <dl className="divide-y divide-line">
             {group.rows.map((row) => (
-              <div key={row.term} className="flex items-baseline justify-between gap-6 py-3">
+              <div key={row.term} className="flex items-baseline justify-between gap-6 py-2">
                 <dt className="shrink-0 text-body-sm text-fg-muted">{row.term}</dt>
                 <dd className="min-w-0 text-right text-body-md text-fg tabular [overflow-wrap:anywhere]">
                   {row.value}

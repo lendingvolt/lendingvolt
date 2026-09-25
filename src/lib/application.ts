@@ -43,7 +43,8 @@ export const residencyOptions = [
 export const employmentOptions = [
   { value: "salaried", label: "Salaried" },
   { value: "self-employed", label: "Self-employed" },
-  { value: "other", label: "Other" },
+  { value: "platform-worker", label: "Platform worker" },
+  { value: "part-time", label: "Part-time/freelancer" },
 ] as const;
 
 export type Residency = (typeof residencyOptions)[number]["value"];
@@ -61,7 +62,6 @@ export type ApplicationDraft = {
   employment: Employment | "";
   monthlyIncome: string;
   pdpaConsent: boolean;
-  marketingConsent: boolean;
   /** Visit to the chosen lender: a Singapore date "YYYY-MM-DD" and a start time "HH:MM". */
   visitDate: string;
   visitTime: string;
@@ -97,7 +97,6 @@ export const incomeSchema = z.object({
 
 export const consentSchema = z.object({
   pdpaConsent: z.literal(true, { error: "Tick the box to agree before we send your application." }),
-  marketingConsent: z.boolean(),
 });
 
 export const bookingSchema = z.object({
@@ -128,7 +127,7 @@ function schemaInput(step: StepId, draft: ApplicationDraft) {
     case "consent":
       return {
         schema: consentSchema,
-        input: { pdpaConsent: draft.pdpaConsent, marketingConsent: draft.marketingConsent },
+        input: { pdpaConsent: draft.pdpaConsent },
       };
     case "book":
       return { schema: bookingSchema, input: { visitDate: draft.visitDate, visitTime: draft.visitTime } };
@@ -203,7 +202,6 @@ export function createInitialState(intent?: Partial<ApplicationIntent> | null): 
       employment: "",
       monthlyIncome: "",
       pdpaConsent: false,
-      marketingConsent: false,
       visitDate: "",
       visitTime: "",
     },

@@ -14,8 +14,7 @@ export const debtConsolidationLoan: LoanPageContent = {
       "Combine credit card balances and credit lines into one loan with one fixed monthly repayment. Compare debt consolidation offers from Singapore banks and licensed moneylenders. Lendingvolt is a comparison platform, not a lender.",
   },
   hero: {
-    eyebrow: "Debt consolidation",
-    title: "Switch many repayments for one.",
+    title: "Switch many repayments for one debt consolidation loan.",
     subhead:
       "Combine credit card balances and credit lines into one loan with one fixed monthly repayment. Compare offers from banks and licensed moneylenders in one application.",
     cta: "See my offers",

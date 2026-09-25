@@ -15,8 +15,7 @@ export const loanCalculatorPage = {
       "Work out the monthly repayment, total interest, total payable and EIR for a flat-rate loan in Singapore. Lendingvolt is a comparison platform, not a lender.",
   },
   hero: {
-    eyebrow: "Loan calculator",
-    title: "Run the current numbers.",
+    title: "Your loan calculator. Run the current numbers.",
     subhead:
       "Enter an amount and a tenure to see the monthly repayment, the total you'd pay, and the EIR, before you apply anywhere.",
     link: { label: "Not sure how much to borrow? Check what you can afford", href: routes.affordability },
@@ -75,8 +74,7 @@ export const affordabilityPage = {
       "Start from your income and monthly spending to see how much you could comfortably borrow, and what the repayment would be. Lendingvolt is a comparison platform, not a lender.",
   },
   hero: {
-    eyebrow: "Affordability check",
-    title: "Borrow within your means.",
+    title: "Your affordability check. Borrow within your means.",
     subhead:
       "Start with what comes in and what goes out each month. We work backwards to the repayment that fits, and the loan amount it supports.",
     link: { label: "Already know the amount? Use the loan calculator", href: routes.loanCalculator },

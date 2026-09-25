@@ -1,10 +1,9 @@
 import Link from "next/link";
 import { GraphicSlot } from "@/components/graphics/graphic-slot";
 import type { SceneId } from "@/components/graphics/scene-ids";
-import { Container, Eyebrow, Section } from "@/components/ui/layout";
+import { Container, Section } from "@/components/ui/layout";
 
 type ToolHeroProps = {
-  eyebrow: string;
   title: string;
   subhead: string;
   link: { label: string; href: string };
@@ -13,14 +12,13 @@ type ToolHeroProps = {
   note?: string;
 };
 
-/** Short dark band: what the page is for, one link onward, one render. */
-export function ToolHero({ eyebrow, title, subhead, link, scene, note }: ToolHeroProps) {
+/** Short dark band: what the page is for (named in the headline itself), one link onward, one render. */
+export function ToolHero({ title, subhead, link, scene, note }: ToolHeroProps) {
   return (
     <Section ground="ink-900" spacing="none" aria-labelledby="tool-title" className="-mt-(--header-h) overflow-hidden">
       <Container className="grid items-center gap-12 pt-[calc(var(--header-h)+64px)] pb-16 md:pb-24 lg:grid-cols-12 lg:gap-6 lg:pt-[calc(var(--header-h)+80px)]">
         <div className="lg:col-span-6">
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 id="tool-title" className="mt-4 max-w-[14ch] text-display-lg">
+          <h1 id="tool-title" className="max-w-[16ch] text-display-lg">
             {title}
           </h1>
           <p className="mt-3 max-w-[52ch] text-body-lg text-fg-muted md:mt-4">{subhead}</p>

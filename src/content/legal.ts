@@ -209,7 +209,6 @@ export const privacyPage: LegalPageContent = {
           "A loan amount, purpose and repayment period.",
           "Your name, mobile number and email address.",
           "Your residency status, how you earn your income, and your monthly income.",
-          "Whether you asked to hear from us about rates and guides.",
           "A date and time, if you book a visit with a lender.",
           "Details you authorise us to receive through Singpass Myinfo, such as your name, contact details, residency and income.",
           "Technical data our hosting provider records, such as your IP address, browser type and the pages you request, so the site can run and stay secure.",
@@ -227,7 +226,6 @@ export const privacyPage: LegalPageContent = {
           "Send your application to those lenders so they can assess it and make an offer.",
           "Show you the offers and, if you choose one, help you arrange the next step with that lender.",
           "Run the site, keep it secure, and answer a question you send us.",
-          "Send occasional emails about rates and guides, if you asked for them.",
         ]),
       ],
     },
@@ -267,7 +265,7 @@ export const privacyPage: LegalPageContent = {
       title: "Marketing",
       blocks: [
         p(
-          "Marketing email is optional. The box is not ticked for you, and you can use the comparison without ticking it. You can unsubscribe in any marketing email, or by writing to us.",
+          "We do not collect marketing consent as part of an application, and we do not send marketing email. If that changes, we will ask first, and you will be able to opt out at any time.",
         ),
       ],
     },
@@ -349,7 +347,6 @@ export const pdpaPage: LegalPageContent = {
           "Your residency status.",
           "How you earn your income, and your monthly income before tax.",
           "The loan amount, purpose and repayment period.",
-          "Your choice about marketing email.",
           "A visit date and time, if you book one.",
           "Any of the above that you authorise us to receive through Singpass Myinfo.",
         ]),
@@ -367,9 +364,7 @@ export const pdpaPage: LegalPageContent = {
           "We can show you the offers side by side, including the repayment, total payable and effective interest rate each lender provides.",
           "We can pass on a visit you book with a lender you choose.",
           "We can answer you about that application.",
-          "We can send occasional emails about rates and guides, if you separately agree.",
         ]),
-        p("The comparison does not depend on the marketing purpose. You can refuse that and still apply."),
       ],
     },
     {

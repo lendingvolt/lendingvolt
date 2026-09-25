@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { applyCopy } from "@/content/apply";
-import { routes } from "@/content/site";
+import { pdpaPage } from "@/content/legal";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/form-controls";
+import { LegalNoticeDialog } from "@/components/legal/legal-notice-dialog";
 import { FlowScreen } from "./flow-screen";
 import { RenderCard } from "./render-card";
 import type { StepProps } from "./types";
@@ -35,17 +35,12 @@ export function ConsentStep({ state, dispatch, nav }: StepProps) {
           onChange={(event) => dispatch({ type: "update", patch: { pdpaConsent: event.target.checked } })}
         >
           {copy.pdpaBefore}
-          <Link href={routes.pdpa} target="_blank" className="text-link underline underline-offset-2">
-            {copy.pdpaLink}
-          </Link>
+          <LegalNoticeDialog
+            page={pdpaPage}
+            triggerLabel={copy.pdpaLink}
+            className="text-link underline underline-offset-2"
+          />
           {copy.pdpaAfter}
-        </Checkbox>
-        <Checkbox
-          id="apply-marketing"
-          checked={draft.marketingConsent}
-          onChange={(event) => dispatch({ type: "update", patch: { marketingConsent: event.target.checked } })}
-        >
-          {copy.marketing}
         </Checkbox>
       </div>
     </FlowScreen>

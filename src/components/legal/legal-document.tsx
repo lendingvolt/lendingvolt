@@ -1,7 +1,8 @@
 import Link from "next/link";
-import type { LegalBlock, LegalInline, LegalPageContent } from "@/content/legal";
+import type { LegalPageContent } from "@/content/legal";
 import { legalLinks, routes } from "@/content/site";
 import { Container, Eyebrow, Section } from "@/components/ui/layout";
+import { LegalBlocks } from "./legal-blocks";
 
 const textLink = "text-link underline decoration-link/40 underline-offset-2 hover:decoration-link";
 
@@ -11,37 +12,6 @@ const hrefByTitle: Record<string, string> = {
   "PDPA Notice": routes.pdpa,
   "Cookie Policy": routes.cookies,
 };
-
-function Inline({ content }: { content: readonly LegalInline[] }) {
-  return content.map((part, index) =>
-    typeof part === "string" ? (
-      part
-    ) : (
-      <Link key={index} href={part.href} className={textLink}>
-        {part.label}
-      </Link>
-    ),
-  );
-}
-
-function Block({ block }: { block: LegalBlock }) {
-  if (block.type === "ul") {
-    return (
-      <ul className="flex list-disc flex-col gap-2 pl-5 marker:text-fg-muted">
-        {block.items.map((item, index) => (
-          <li key={index}>
-            <Inline content={item} />
-          </li>
-        ))}
-      </ul>
-    );
-  }
-  return (
-    <p>
-      <Inline content={block.content} />
-    </p>
-  );
-}
 
 /** A fine-print page: one column, a contents list, then numbered sections. */
 export function LegalDocument({ page }: { page: LegalPageContent }) {
@@ -79,9 +49,7 @@ export function LegalDocument({ page }: { page: LegalPageContent }) {
                   {index + 1}. {section.title}
                 </h2>
                 <div className="mt-4 flex max-w-[60ch] flex-col gap-4 text-body-md">
-                  {section.blocks.map((block, blockIndex) => (
-                    <Block key={blockIndex} block={block} />
-                  ))}
+                  <LegalBlocks blocks={section.blocks} />
                 </div>
               </section>
             ))}
