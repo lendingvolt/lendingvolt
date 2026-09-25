@@ -59,14 +59,14 @@ export const personalLoan: LoanPageContent = {
         bullets: [
           { text: "Most bank personal loans run for 1 to 5 years.", footnote: "market-typical" },
           { text: "Repaying early can cut the interest you owe, though some lenders charge an early settlement fee." },
-          { text: "Late payments add fees and can be reported to Credit Bureau Singapore." },
+          { text: "Late payments add fees and can be reported to Credit Bureau Singapore and Moneylenders Credit Bureau." },
         ],
         footnote: "schedule-split",
       },
       {
         fragment: "eligibility-table",
         title: "Who can borrow, and how much",
-        body: "Banks and licensed moneylenders follow different rules. Most people with a steady income can borrow from a bank; licensed moneylenders lend to more people, with tighter limits and higher costs.",
+        body: "Banks and licensed moneylenders set different eligibility rules. Banks generally look at your income and residency; licensed moneylenders, regulated by the Ministry of Law, serve a wider range of applicants. Compare the limits and rates for each below.",
       },
     ],
   },
@@ -111,7 +111,7 @@ export const personalLoan: LoanPageContent = {
       {
         question: "Should I choose a bank or a licensed moneylender?",
         answer:
-          "Banks usually cost less if you meet their income requirements. Licensed moneylenders lend to more people and often fund faster, but they charge more and lend less. Banks are regulated by MAS and licensed moneylenders by the Ministry of Law. We show both side by side so you can decide.",
+          "If you meet a bank's income requirements, a bank loan is worth comparing first. Licensed moneylenders lend to more people and often fund faster. Banks are regulated by MAS and licensed moneylenders by the Ministry of Law. We show both side by side, with the rate and total cost of each offer, so you can decide.",
       },
       {
         question: "Will checking my rate affect my credit score?",

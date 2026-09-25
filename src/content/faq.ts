@@ -179,7 +179,7 @@ export const faqPage = {
         {
           question: "Can I apply if my credit history isn't perfect?",
           answer: [
-            "Yes. You'll only see offers from lenders whose criteria you meet. Licensed moneylenders often lend to people banks decline, though they charge more and lend less.",
+            "Yes. You'll only see offers from lenders whose criteria you meet. Licensed moneylenders, regulated by the Ministry of Law, often lend to people banks decline.",
           ],
         },
       ],

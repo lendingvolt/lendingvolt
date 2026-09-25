@@ -61,14 +61,14 @@ export const businessLoan: LoanPageContent = {
         bullets: [
           { text: "Business term loans usually run for 1 to 5 years.", footnote: "market-typical" },
           { text: "Some lenders offer a short interest-only period at the start." },
-          { text: "Late payments add fees and can be reported to Credit Bureau Singapore." },
+          { text: "Late payments add fees and can be reported to Credit Bureau Singapore and Moneylenders Credit Bureau." },
         ],
         footnote: "schedule-split",
       },
       {
         fragment: "eligibility-table",
         title: "Government-backed or unsecured",
-        body: "The Enterprise Financing Scheme lets banks lend more to SMEs because Enterprise Singapore shares the risk. Unsecured business term loans are quicker to arrange but lend less.",
+        body: "The Enterprise Financing Scheme lets banks lend more to SMEs because Enterprise Singapore shares the risk. Unsecured business term loans are quicker to arrange, for smaller amounts.",
       },
     ],
   },

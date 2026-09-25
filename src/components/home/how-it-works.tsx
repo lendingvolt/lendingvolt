@@ -9,14 +9,14 @@ export function HowItWorks() {
   return (
     <Section ground="surface-1" id="how-it-works" aria-labelledby="how-title">
       <Container>
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="flex flex-col gap-4">
+        <div className="flex items-end justify-between gap-4">
+          <div className="flex min-w-0 flex-col gap-4">
             <Eyebrow>{howItWorks.eyebrow}</Eyebrow>
             <h2 id="how-title" className="text-display-md">
               {howItWorks.title}
             </h2>
           </div>
-          <Button href={howItWorks.link.href} variant="text">
+          <Button href={howItWorks.link.href} variant="text" className="shrink-0">
             {howItWorks.link.label}
           </Button>
         </div>

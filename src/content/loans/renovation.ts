@@ -58,7 +58,7 @@ export const renovationLoan: LoanPageContent = {
         bullets: [
           { text: "Bank renovation loans usually run for 1 to 5 years.", footnote: "market-typical" },
           { text: "Funds from a bank renovation loan are usually paid straight to your contractor." },
-          { text: "Late payments add fees and can be reported to Credit Bureau Singapore." },
+          { text: "Late payments add fees and can be reported to Credit Bureau Singapore and Moneylenders Credit Bureau." },
         ],
         footnote: "schedule-split",
       },

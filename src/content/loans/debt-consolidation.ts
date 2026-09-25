@@ -60,14 +60,14 @@ export const debtConsolidationLoan: LoanPageContent = {
         bullets: [
           { text: "Bank consolidation plans can run for up to 10 years.", footnote: "market-typical" },
           { text: "Avoid new card spending while you repay, or the total owed can climb again." },
-          { text: "Late payments add fees and can be reported to Credit Bureau Singapore." },
+          { text: "Late payments add fees and can be reported to Credit Bureau Singapore and Moneylenders Credit Bureau." },
         ],
         footnote: "schedule-split",
       },
       {
         fragment: "eligibility-table",
         title: "Bank plan or licensed moneylender",
-        body: "Banks offer a Debt Consolidation Plan to Singaporeans and PRs within an income band. Licensed moneylenders lend to more people, with smaller limits and higher costs.",
+        body: "Banks offer a Debt Consolidation Plan to Singapore citizens and PRs within an income band. Licensed moneylenders, regulated by the Ministry of Law, serve a wider range of applicants. Compare the limits and rates for each below.",
       },
     ],
   },
@@ -121,7 +121,7 @@ export const debtConsolidationLoan: LoanPageContent = {
       {
         question: "What happens to my credit cards?",
         answer:
-          "With a bank plan, most of your cards and credit lines are closed, and you can keep one new line of up to one month's income. A licensed moneylender loan leaves your cards open, so the discipline is up to you.",
+          "With a bank plan, most of your cards and credit lines are closed, and you can keep one new line of up to one month's income. A licensed moneylender loan leaves your cards open.",
       },
       {
         question: "Am I eligible for a Debt Consolidation Plan?",
